@@ -1,5 +1,6 @@
 package com.zj.hi_library.hiLog;
 
+import android.app.Application;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -30,12 +31,13 @@ public class HiLogManager {
         return instance;
     }
 
-    public static void init(Context context) {
+    public static void init(Application app) {
         HiLogPrinter hiConsolePrinter = new HiConsolePrinter();
+        HiLogPrinter hiViewPrinter = new HiViewPrinter(app);
         HiLogConfig hiLogConfig = new HiLogConfig() {
 
         };
-        init(hiLogConfig, hiConsolePrinter);
+        init(hiLogConfig, hiConsolePrinter,hiViewPrinter);
     }
 
     public static void init(@NonNull HiLogConfig config, HiLogPrinter... printer) {
