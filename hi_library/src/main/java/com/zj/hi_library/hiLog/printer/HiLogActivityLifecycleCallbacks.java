@@ -30,13 +30,17 @@ public class HiLogActivityLifecycleCallbacks implements Application.ActivityLife
     @Override
     public void onActivityStarted(@NonNull Activity activity) {
         startedActivityCounts++;
+        HiViewPrinterProvider instance = HiViewPrinterProvider.getInstance();
+        if (instance != null) {
+            instance.addView(activity);
+        }
     }
 
     @Override
     public void onActivityResumed(@NonNull Activity activity) {
         HiViewPrinterProvider instance = HiViewPrinterProvider.getInstance();
-        if (isMainLaunchActivity(activity) && instance != null) {
-            instance.addView(activity);
+        if (instance!=null){
+            instance.isShowLogView();
         }
     }
 
@@ -49,9 +53,6 @@ public class HiLogActivityLifecycleCallbacks implements Application.ActivityLife
     public void onActivityStopped(@NonNull Activity activity) {
         startedActivityCounts--;
 
-        if (startedActivityCounts == 0) {
-
-        }
     }
 
     @Override
@@ -62,8 +63,11 @@ public class HiLogActivityLifecycleCallbacks implements Application.ActivityLife
     @Override
     public void onActivityDestroyed(@NonNull Activity activity) {
         HiViewPrinterProvider instance = HiViewPrinterProvider.getInstance();
-        if (isMainLaunchActivity(activity) && instance != null) {
+        if (instance != null) {
             instance.removeView(activity);
+        }
+        if (startedActivityCounts == 0 && instance != null) {
+            instance.destroy();
         }
     }
 
