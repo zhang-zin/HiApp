@@ -10,7 +10,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        HiLogManager.getInstance().addPrinter(HiViewPrinter(this))
         HiLog.e("MainActivity")
     }
 }
