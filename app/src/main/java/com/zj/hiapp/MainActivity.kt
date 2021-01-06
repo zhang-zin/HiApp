@@ -14,8 +14,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        HiLog.e("MainActivity")
-        HiLog.e(1,11)
+        HiLog.e("MainActivity")
+        HiLog.eF(true, "MainActivity")
+        HiLog.eT("张", "MainActivity")
+        HiLog.eF("张", true, "MainActivity")
     }
 
     override fun onDestroy() {

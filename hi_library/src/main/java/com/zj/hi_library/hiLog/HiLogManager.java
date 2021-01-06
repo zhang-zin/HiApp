@@ -5,7 +5,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import com.zj.hi_library.BuildConfig;
 import com.zj.hi_library.hiLog.printer.HiConsolePrinter;
 import com.zj.hi_library.hiLog.printer.HiFilePrinter;
 import com.zj.hi_library.hiLog.printer.HiLogPrinter;
@@ -21,6 +20,7 @@ import java.util.List;
  */
 public class HiLogManager {
 
+    private static File hiLogFile;
     private HiLogConfig config;
     private static HiLogManager instance;
     private List<HiLogPrinter> printerList = new ArrayList<>();
@@ -39,10 +39,12 @@ public class HiLogManager {
      *
      * @param app           app
      * @param isViewPrinter 是否启动视图打印器 true：启动在应用上显示日志信息
+     * @param retentionTime log文件的有效时长，单位毫秒，<=0表示一直有效
      */
-    public static void init(Application app, boolean isViewPrinter) {
+    public static void init(Application app, boolean isViewPrinter, long retentionTime) {
         HiLogPrinter hiConsolePrinter = new HiConsolePrinter();
-        HiLogPrinter hiFilePrinter = new HiFilePrinter(app.getDir("hiLogFile", Context.MODE_APPEND));
+        hiLogFile = app.getDir("hiLogFile", Context.MODE_APPEND);
+        HiLogPrinter hiFilePrinter = HiFilePrinter.getInstance(retentionTime, hiLogFile);
         HiLogConfig hiLogConfig = new HiLogConfig() {
             @Override
             public boolean isViewPrinter() {
@@ -83,5 +85,14 @@ public class HiLogManager {
 
     public List<HiLogPrinter> getPrinterList() {
         return printerList;
+    }
+
+    /**
+     * 获取log文件夹
+     *
+     * @return log文件
+     */
+    public File getLogFile() {
+        return hiLogFile;
     }
 }

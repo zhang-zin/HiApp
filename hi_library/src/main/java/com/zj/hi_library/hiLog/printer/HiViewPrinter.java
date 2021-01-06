@@ -98,13 +98,12 @@ public class HiViewPrinter implements HiLogPrinter, HiViewPrinterProvider.Recycl
         @Override
         public void onBindViewHolder(@NonNull LogViewHolder holder, int position) {
             HiLogMo hiLogMo = hiLogMoList.get(position);
-            holder.tag.setText(hiLogMo.tag);
-            holder.message.setText("tiem: " + hiLogMo.time + "\n" + hiLogMo.printString);
+            holder.tag.setText(hiLogMo.getFlattened());
+            holder.message.setText(hiLogMo.log);
 
             int highLightColor = getHighLightColor(hiLogMo.level);
             holder.tag.setTextColor(highLightColor);
             holder.message.setTextColor(highLightColor);
-
         }
 
         @Override
