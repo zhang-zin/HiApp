@@ -10,6 +10,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        HiLogManager.init(this);
+        HiLogManager.init(this,true);
     }
 }

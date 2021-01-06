@@ -18,6 +18,7 @@ public class HiLog {
     }
 
     //region打印日志
+
     public static void v(@NonNull Object... contents) {
         log(HiLogType.V, contents);
     }
@@ -98,8 +99,7 @@ public class HiLog {
         }
         sb.append(body);
 
-        List<HiLogPrinter> hiLogPrinters = config.printers() != null ? Arrays.asList(config.printers())
-                : HiLogManager.getInstance().getPrinterList();
+        List<HiLogPrinter> hiLogPrinters = HiLogManager.getInstance().getPrinterList();
         for (HiLogPrinter hiLogPrinter : hiLogPrinters) {
             hiLogPrinter.print(config, type, tag, sb.toString());
         }

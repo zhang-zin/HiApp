@@ -10,8 +10,8 @@ public abstract class HiLogConfig {
      * 一行打印的最大长度
      */
     public static int MAX_LEN = 512;
-    static HiLogThreadFormatter HI_LOG_THREAD_FORMATTER = new HiLogThreadFormatter();
-    static HiLogStackTrackFormatter HI_LOG_STACK_TRACK_FORMATTER = new HiLogStackTrackFormatter();
+    public  static HiLogThreadFormatter HI_LOG_THREAD_FORMATTER = new HiLogThreadFormatter();
+    public  static HiLogStackTrackFormatter HI_LOG_STACK_TRACK_FORMATTER = new HiLogStackTrackFormatter();
 
     public JsonParser injectJsonParser() {
         return null;
@@ -22,7 +22,7 @@ public abstract class HiLogConfig {
      *
      * @return tag
      */
-    protected String getGlobalTag() {
+    public String getGlobalTag() {
         return "HiLog";
     }
 
@@ -31,7 +31,7 @@ public abstract class HiLogConfig {
      *
      * @return true 使用
      */
-    protected boolean enable() {
+    public boolean enable() {
         return true;
     }
 
@@ -40,7 +40,7 @@ public abstract class HiLogConfig {
      *
      * @return true 是
      */
-    protected boolean includeThread() {
+    public boolean includeThread() {
         return true;
     }
 
@@ -49,12 +49,15 @@ public abstract class HiLogConfig {
      *
      * @return 默认5层
      */
-    protected int stackTraceDepth() {
+    public int stackTraceDepth() {
         return 5;
     }
 
-    protected HiLogPrinter[] printers() {
-        return null;
+    /**
+     * 是否在手机app上打印log
+     */
+    public boolean isViewPrinter() {
+        return true;
     }
 
     public interface JsonParser {

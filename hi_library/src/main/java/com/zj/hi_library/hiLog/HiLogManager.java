@@ -5,10 +5,13 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import com.zj.hi_library.BuildConfig;
 import com.zj.hi_library.hiLog.printer.HiConsolePrinter;
+import com.zj.hi_library.hiLog.printer.HiFilePrinter;
 import com.zj.hi_library.hiLog.printer.HiLogPrinter;
 import com.zj.hi_library.hiLog.printer.HiViewPrinter;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,15 +34,35 @@ public class HiLogManager {
         return instance;
     }
 
-    public static void init(Application app) {
+    /**
+     * 初始化日志打印控制器
+     *
+     * @param app           app
+     * @param isViewPrinter 是否启动视图打印器 true：启动在应用上显示日志信息
+     */
+    public static void init(Application app, boolean isViewPrinter) {
         HiLogPrinter hiConsolePrinter = new HiConsolePrinter();
-        HiLogPrinter hiViewPrinter = new HiViewPrinter(app);
+        HiLogPrinter hiFilePrinter = new HiFilePrinter(app.getDir("hiLogFile", Context.MODE_APPEND));
         HiLogConfig hiLogConfig = new HiLogConfig() {
-
+            @Override
+            public boolean isViewPrinter() {
+                return isViewPrinter;
+            }
         };
-        init(hiLogConfig, hiConsolePrinter,hiViewPrinter);
+        if (hiLogConfig.isViewPrinter()) {
+            HiLogPrinter hiViewPrinter = new HiViewPrinter(app);
+            init(hiLogConfig, hiConsolePrinter, hiViewPrinter, hiFilePrinter);
+        } else {
+            init(hiLogConfig, hiConsolePrinter, hiFilePrinter);
+        }
     }
 
+    /**
+     * 初始化日志打印控制器
+     *
+     * @param config  配置设置
+     * @param printer 打印器，默认有三种实现  {@link HiViewPrinter}  {@link HiConsolePrinter}
+     */
     public static void init(@NonNull HiLogConfig config, HiLogPrinter... printer) {
         instance = new HiLogManager(config, printer);
     }

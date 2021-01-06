@@ -37,7 +37,6 @@ public class HiViewPrinterProvider {
     private final Map<String, RecyclerView> recyclerViews = new HashMap<>();
     private final HiLogActivityLifecycleCallbacks callbacks = new HiLogActivityLifecycleCallbacks();
 
-
     private HiViewPrinterProvider(Application app) {
         this.app = app;
         app.registerActivityLifecycleCallbacks(callbacks);
@@ -174,6 +173,9 @@ public class HiViewPrinterProvider {
     }
 
     protected RecyclerView getRecyclerView() {
+        if (currentActivity == null) {
+            return null;
+        }
         String name = currentActivity.getClass().getName();
         return recyclerViews.get(name);
     }
