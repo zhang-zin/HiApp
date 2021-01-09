@@ -1,3 +1,5 @@
+include ':common'
+include ':hi_ui'
 include ':hi_library'
 include ':app'
 rootProject.name = "HiApp"
