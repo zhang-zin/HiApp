@@ -1,9 +1,12 @@
 plugins {
     id 'com.android.application'
+    id 'kotlin-android'
 }
 apply from: '../dependencies.gradle'
 
 dependencies {
 
     implementation project(path: ':common')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
 }

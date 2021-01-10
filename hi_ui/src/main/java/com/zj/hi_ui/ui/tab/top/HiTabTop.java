@@ -1,10 +1,11 @@
-package com.zj.hi_ui.ui.tab.bottom;
+package com.zj.hi_ui.ui.tab.top;
 
 import android.content.Context;
 import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -16,72 +17,69 @@ import androidx.annotation.Nullable;
 import com.zj.hi_ui.R;
 import com.zj.hi_ui.ui.tab.common.IHiTab;
 
-public class HiTabBottom extends RelativeLayout implements IHiTab<HiTabBottomInfo<?>> {
+public class HiTabTop extends RelativeLayout implements IHiTab<HiTabTopInfo<?>> {
 
-    private HiTabBottomInfo<?> tabInfo;
+    private HiTabTopInfo<?> tabInfo;
     private ImageView tabImageView;
-    private TextView tabIconView;
     private TextView tabNameView;
+    private View topIndicator;
 
-    public HiTabBottom(Context context) {
+    public HiTabTop(Context context) {
         this(context, null);
     }
 
-    public HiTabBottom(Context context, AttributeSet attrs) {
+    public HiTabTop(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public HiTabBottom(Context context, AttributeSet attrs, int defStyleAttr) {
+    public HiTabTop(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
 
     private void init() {
-        LayoutInflater.from(getContext()).inflate(R.layout.hi_tab_bottom, this);
+        LayoutInflater.from(getContext()).inflate(R.layout.hi_tab_top, this);
         tabImageView = findViewById(R.id.iv_image);
-        tabIconView = findViewById(R.id.tv_icon);
         tabNameView = findViewById(R.id.tv_name);
+        topIndicator = findViewById(R.id.tab_top_indicator);
     }
 
     @Override
-    public void setHiTabInfo(@NonNull HiTabBottomInfo<?> data) {
+    public void setHiTabInfo(@NonNull HiTabTopInfo<?> data) {
         this.tabInfo = data;
         inflateInfo(false, true);
     }
 
     private void inflateInfo(boolean selected, boolean init) {
-        if (tabInfo.tabType == HiTabBottomInfo.TabType.ICON) {
+        if (tabInfo.tabType == HiTabTopInfo.TabType.TEXT) {
             if (init) {
+                tabNameView.setVisibility(VISIBLE);
                 tabImageView.setVisibility(GONE);
-                tabIconView.setVisibility(VISIBLE);
-                Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), tabInfo.iconFont);
-                tabIconView.setTypeface(typeface);
                 if (!TextUtils.isEmpty(tabInfo.name)) {
                     tabNameView.setText(tabInfo.name);
                 }
             }
 
             if (selected) {
-                tabIconView.setText(TextUtils.isEmpty(tabInfo.selectedIconName) ? tabInfo.defaultIconName : tabInfo.selectedIconName);
-                tabIconView.setTextColor(getTextColor(tabInfo.tintColor));
                 tabNameView.setTextColor(getTextColor(tabInfo.tintColor));
+                tabNameView.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
+                topIndicator.setVisibility(VISIBLE);
             } else {
-                tabIconView.setText(tabInfo.defaultIconName);
-                tabIconView.setTextColor(getTextColor(tabInfo.defaultColor));
                 tabNameView.setTextColor(getTextColor(tabInfo.defaultColor));
+                tabNameView.setTypeface(Typeface.SANS_SERIF, Typeface.NORMAL);
+                topIndicator.setVisibility(GONE);
             }
 
-        } else if (tabInfo.tabType == HiTabBottomInfo.TabType.BITMAP) {
+        } else if (tabInfo.tabType == HiTabTopInfo.TabType.BITMAP) {
             if (init) {
                 tabImageView.setVisibility(VISIBLE);
-                tabIconView.setVisibility(GONE);
-                if (!TextUtils.isEmpty(tabInfo.name)) {
-                    tabNameView.setText(tabInfo.name);
-                }
+                tabNameView.setVisibility(GONE);
             }
             if (selected) {
+                topIndicator.setVisibility(VISIBLE);
                 tabImageView.setImageBitmap(tabInfo.selectedBitmap);
             } else {
+                topIndicator.setVisibility(GONE);
                 tabImageView.setImageBitmap(tabInfo.defaultBitmap);
             }
         }
@@ -96,7 +94,7 @@ public class HiTabBottom extends RelativeLayout implements IHiTab<HiTabBottomInf
     }
 
     @Override
-    public void onTabSelectedChange(int index, @Nullable HiTabBottomInfo<?> prevInfo, @NonNull HiTabBottomInfo<?> nextInfo) {
+    public void onTabSelectedChange(int index, @Nullable HiTabTopInfo<?> prevInfo, @NonNull HiTabTopInfo<?> nextInfo) {
         if (prevInfo != tabInfo && nextInfo != tabInfo || prevInfo == nextInfo) {
             return;
         }
@@ -104,7 +102,7 @@ public class HiTabBottom extends RelativeLayout implements IHiTab<HiTabBottomInf
         inflateInfo(prevInfo != tabInfo, false);
     }
 
-    public HiTabBottomInfo<?> getHiTabInfo() {
+    public HiTabTopInfo<?> getHiTabInfo() {
         return tabInfo;
     }
 
@@ -112,11 +110,8 @@ public class HiTabBottom extends RelativeLayout implements IHiTab<HiTabBottomInf
         return tabImageView;
     }
 
-    public TextView getTabIconView() {
-        return tabIconView;
-    }
-
     public TextView getTabNameView() {
         return tabNameView;
     }
+
 }

@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zj.hi_ui.ui.tab.bottom.HiTabBottomLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tab_bottom_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.zj.common.tab.HiFragmentTabView
-        android:id="@+id/hi_tab_view"
+    <TextView
+        android:id="@+id/tv_log"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="click"
+        android:padding="5dp"
+        android:text="LogDemo"
+        android:textSize="25sp" />
 
-</com.zj.hi_ui.ui.tab.bottom.HiTabBottomLayout>
+    <TextView
+        android:id="@+id/tv_tab_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="click"
+        android:padding="5dp"
+        android:text="TabBottomLayout"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/tv_tab_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="click"
+        android:padding="5dp"
+        android:text="TabTopLayout"
+        android:textSize="25sp" />
+
+</LinearLayout>

@@ -1,5 +1,8 @@
 package com.zj.hi_ui.ui.tab.common;
 
+import android.graphics.Color;
+
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Px;
 
@@ -23,4 +26,13 @@ public interface IHiTab<D> extends IHiTabLayout.OnTabSelectedListener<D> {
      * @param height 高度值
      */
     void resetHeight(@Px int height);
+
+    @ColorInt
+    default int getTextColor(Object color) {
+        if (color instanceof String) {
+            return Color.parseColor((String) color);
+        } else {
+            return (int) color;
+        }
+    }
 }
