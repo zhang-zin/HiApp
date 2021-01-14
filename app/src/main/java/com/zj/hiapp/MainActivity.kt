@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.zj.common.ui.common.HiBaseActivity
+import com.zj.hiapp.demo.HiRefreshDemoActivity
 import com.zj.hiapp.demo.LogActivity
 import com.zj.hiapp.demo.TabBottomLayoutActivity
 import com.zj.hiapp.demo.TabTopLayoutActivity
@@ -28,6 +29,8 @@ class MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
             R.id.tv_tab_top -> {
                 startActivity(Intent(this, TabTopLayoutActivity::class.java))
             }
+            R.id.tv_refresh -> startActivity(Intent(this, HiRefreshDemoActivity::class.java))
+
         }
     }
 

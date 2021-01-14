@@ -37,4 +37,14 @@
         android:text="TabTopLayout"
         android:textSize="25sp" />
 
+    <TextView
+        android:id="@+id/tv_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="click"
+        android:padding="5dp"
+        android:text="refresh"
+        android:textSize="25sp" />
+
 </LinearLayout>

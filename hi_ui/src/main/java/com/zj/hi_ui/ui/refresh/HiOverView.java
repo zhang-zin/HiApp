@@ -30,6 +30,11 @@ public abstract class HiOverView extends FrameLayout {
         /**
          * 超出可刷新距离的状态
          */
+        STATE_OVER,
+
+        /**
+         * 刷新中的状态
+         */
         STATE_REFRESH,
 
         /**
