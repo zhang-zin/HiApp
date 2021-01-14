@@ -38,7 +38,7 @@ class ActivityManager private constructor() {
 
         override fun onActivityDestroyed(activity: Activity) {
             for (activityRef in activityRefs) {
-                if (activityRef != null && activityRef.get() == activity) {
+                if (activityRef.get() == activity) {
                     activityRefs.remove(activityRef);
                     break
                 }
