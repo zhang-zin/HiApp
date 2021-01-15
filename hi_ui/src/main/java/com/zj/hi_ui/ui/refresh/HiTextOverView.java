@@ -61,11 +61,8 @@ public class HiTextOverView extends HiOverView {
     @Override
     void onRefresh() {
         text.setText("正在刷新...");
-        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_anim);
         Animation operatingAnim = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_anim);
-        LinearInterpolator lin = new LinearInterpolator();
-        operatingAnim.setInterpolator(lin);
-        rotateView.startAnimation(animation);
+        rotateView.startAnimation(operatingAnim);
     }
 
     @Override

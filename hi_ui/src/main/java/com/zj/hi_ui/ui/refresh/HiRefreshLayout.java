@@ -3,6 +3,7 @@ package com.zj.hi_ui.ui.refresh;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -68,7 +69,7 @@ public class HiRefreshLayout extends FrameLayout implements HiRefresh {
             removeView(mHiOverView);
         }
         this.mHiOverView = hiOverView;
-        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         addView(mHiOverView, 0, params);
     }
 
@@ -85,8 +86,6 @@ public class HiRefreshLayout extends FrameLayout implements HiRefresh {
         mState = HiRefreshState.STATE_INIT;
         int bottom = head.getBottom();
         if (bottom >= 0) {
-            //下over pull 200，height 100
-            //bottom  =100 ,height 100
             recover(bottom);
         }
     }
@@ -161,7 +160,7 @@ public class HiRefreshLayout extends FrameLayout implements HiRefresh {
      * @param dis 滑动距离
      */
     private void recover(int dis) {
-        if (mHiRefreshListener != null && dis > 0) {
+        if (mHiRefreshListener != null && dis > mHiOverView.mPullRefreshHeight) {
             // 滑动到指定位置
             mAutoScroller.recover(dis - mHiOverView.mPullRefreshHeight);
             mState = HiOverView.HiRefreshState.STATE_OVER_RELEASE;
@@ -226,7 +225,7 @@ public class HiRefreshLayout extends FrameLayout implements HiRefresh {
      * 开始刷新
      */
     private void refresh() {
-        if (mHiRefreshListener!=null){
+        if (mHiRefreshListener != null) {
             mHiRefreshListener.onRefresh();
             mHiOverView.onRefresh();
             mHiOverView.setState(HiRefreshState.STATE_REFRESH);
