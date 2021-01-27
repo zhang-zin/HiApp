@@ -3,18 +3,17 @@ package com.zj.hi_ui.ui.refresh;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.Scroller;
 
-import com.zj.hi_library.hiLog.HiLog;
-import com.zj.hi_ui.ui.refresh.HiOverView.HiRefreshState;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.zj.hi_library.hiLog.HiLog;
+import com.zj.hi_ui.ui.refresh.HiOverView.HiRefreshState;
 
 /**
  * 刷新控件
@@ -25,7 +24,6 @@ public class HiRefreshLayout extends FrameLayout implements HiRefresh {
 
     private static final String TAG = HiRefreshLayout.class.getSimpleName();
     private HiOverView mHiOverView;
-    private boolean mDisableRefreshScroll;
     private HiRefreshListener mHiRefreshListener;
     private HiOverView.HiRefreshState mState = HiOverView.HiRefreshState.STATE_INIT;
 
@@ -92,7 +90,7 @@ public class HiRefreshLayout extends FrameLayout implements HiRefresh {
 
     @Override
     public void setDisableRefreshScroll(boolean disableRefreshScroll) {
-        this.mDisableRefreshScroll = disableRefreshScroll;
+        this.disableRefreshScroll = disableRefreshScroll;
     }
 
     @Override
