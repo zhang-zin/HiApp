@@ -14,6 +14,7 @@ import com.zj.hi_ui.ui.banner.core.HiBannerDelegate;
 import com.zj.hi_ui.ui.banner.core.HiBannerMo;
 import com.zj.hi_ui.ui.banner.core.IBindAdapter;
 import com.zj.hi_ui.ui.banner.core.IHiBanner;
+import com.zj.hi_ui.ui.banner.indicator.HiIndicator;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class HiBanner extends FrameLayout implements IHiBanner {
     }
 
     public HiBanner(@NonNull Context context, @Nullable AttributeSet attrs) {
-        this(context, null, 0);
+        this(context, attrs, 0);
     }
 
     public HiBanner(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -59,6 +60,11 @@ public class HiBanner extends FrameLayout implements IHiBanner {
     @Override
     public void setBannerData(@NonNull List<? extends HiBannerMo> models) {
         delegate.setBannerData(models);
+    }
+
+    @Override
+    public void setHiIndicator(HiIndicator hiIndicator) {
+        delegate.setHiIndicator(hiIndicator);
     }
 
     @Override
