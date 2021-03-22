@@ -5,6 +5,7 @@ import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.lang.RuntimeException
 import java.lang.reflect.ParameterizedType
@@ -36,6 +37,11 @@ class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder
             dataSets.add(it)
         }
         notifyItemRangeInserted(start, items.size)
+    }
+
+    fun refreshItem(dataItem: HiDataItem<*, out RecyclerView.ViewHolder>) {
+        val indexOf = dataSets.indexOf(dataItem)
+        notifyItemChanged(indexOf)
     }
 
     /**
@@ -100,7 +106,8 @@ class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder
                     RecyclerView.ViewHolder::class.java.isAssignableFrom(argument)
                 ) {
                     try {
-                        return argument.getConstructor(View::class.java).newInstance(itemView) as RecyclerView.ViewHolder
+                        return argument.getConstructor(View::class.java)
+                            .newInstance(itemView) as RecyclerView.ViewHolder
                     } catch (e: Throwable) {
                         e.printStackTrace()
                     }
@@ -111,7 +118,27 @@ class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val itemViewType = getItemViewType(position)
+        typeArrays[itemViewType]?.onBindData(holder, position)
+    }
 
+    /**
+     * 为列表上的item适配网格布局
+     */
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        val layoutManager = recyclerView.layoutManager
+        if (layoutManager is GridLayoutManager) {
+            val spanCount = layoutManager.spanCount
+            layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    val itemViewType = getItemViewType(position)
+                    val spanSize = typeArrays[itemViewType]?.getSpanSize() ?: 0
+                    return if (spanSize <= 0) spanCount else spanSize
+                }
+
+            }
+        }
     }
 
     override fun getItemCount() = dataSets.size

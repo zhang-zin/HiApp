@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class HiDataItem<DATA, VH : RecyclerView.ViewHolder>(data: DATA) {
 
     var mDate: DATA? = null
+    var hiAdapter: HiAdapter? = null
 
     init {
         this.mDate = data
@@ -21,8 +22,8 @@ abstract class HiDataItem<DATA, VH : RecyclerView.ViewHolder>(data: DATA) {
         return -1;
     }
 
-    fun setAdapter(adapter: HiAdapter){
-
+    fun setAdapter(adapter: HiAdapter) {
+        this.hiAdapter = adapter
     }
 
     /**
@@ -36,14 +37,18 @@ abstract class HiDataItem<DATA, VH : RecyclerView.ViewHolder>(data: DATA) {
      * 刷新列表
      */
     fun refreshItem() {
-
+        hiAdapter?.run {
+           refreshItem(this@HiDataItem)
+        }
     }
 
     /**
      * 从列表中移除
      */
     fun removeItem() {
-
+        hiAdapter?.run {
+            removeItem(this@HiDataItem)
+        }
     }
 
     /**
