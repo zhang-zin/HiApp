@@ -3,6 +3,7 @@ package com.zj.hiapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.alibaba.android.arouter.launcher.ARouter
 import com.zj.common.ui.common.HiBaseActivity
 import com.zj.hiapp.demo.HiRefreshDemoActivity
 import com.zj.hiapp.demo.LogActivity
@@ -10,7 +11,8 @@ import com.zj.hiapp.demo.TabBottomLayoutActivity
 import com.zj.hiapp.demo.TabTopLayoutActivity
 import com.zj.hiapp.logic.MainActivityLogic
 
-class MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
+class
+MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +23,8 @@ class MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
     fun click(view: View) {
         when (view.id) {
             R.id.tv_log -> {
-                startActivity(Intent(this, LogActivity::class.java))
+                ARouter.getInstance().build("/b/xx").navigation()
+             //   startActivity(Intent(this, LogActivity::class.java))
             }
             R.id.tv_tab_bottom -> {
                 startActivity(Intent(this, TabBottomLayoutActivity::class.java))

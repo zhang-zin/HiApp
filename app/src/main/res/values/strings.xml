@@ -8,4 +8,8 @@
     <string name="if_category">&#xe600;</string>
     <string name="if_favorite">&#xe639;</string>
     <string name="if_favorite1">&#xe620;</string>
+    <string name="if_empty1">&#xe637;</string>
+    <string name="if_empty2">&#xe6cf;</string>
+    <string name="if_empty3">&#xe60c;</string>
+    <string name="degrade_title">页面不见了，开发小哥正在加快修复</string>
 </resources>
