@@ -85,7 +85,7 @@ public class HiBannerAdapter extends PagerAdapter {
      *
      * @return Banner页面真实数量
      */
-    private int getRealCount() {
+    public int getRealCount() {
         return models == null ? 0 : models.size();
     }
 

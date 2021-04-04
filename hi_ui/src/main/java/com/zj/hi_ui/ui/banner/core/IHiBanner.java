@@ -4,6 +4,8 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 
+import com.zj.hi_ui.ui.banner.indicator.HiIndicator;
+
 import java.util.List;
 
 /**
@@ -27,6 +29,8 @@ public interface IHiBanner {
      * @param models item集合
      */
     void setBannerData(@NonNull List<? extends HiBannerMo> models);
+
+    void setHiIndicator(HiIndicator hiIndicator);
 
     /**
      * 设置是否自动滑动

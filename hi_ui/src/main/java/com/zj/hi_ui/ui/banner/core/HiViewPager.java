@@ -128,5 +128,15 @@ public class HiViewPager extends ViewPager {
         return nextPosition;
     }
 
+    public void setScrollDuration(int duration) {
+        try {
+            Field mScroller = ViewPager.class.getDeclaredField("mScroller");
+            mScroller.setAccessible(true);
+            HiBannerScroller hiBannerScroller = new HiBannerScroller(getContext(), duration);
+            mScroller.set(this, hiBannerScroller);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
 
+    }
 }

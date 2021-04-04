@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zj.hiapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".HiApplication"
         android:allowBackup="true"
@@ -10,6 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HiApp">
+
+        <activity android:name=".demo.HiBannerDemoActivity" />
+        <activity android:name=".demo.HiRefreshDemoActivity" />
 
         <activity android:name=".router.DegradeGlobalActivity" />
         <activity android:name=".biz.VipActivity" />
