@@ -11,8 +11,7 @@ import com.zj.hiapp.demo.TabBottomLayoutActivity
 import com.zj.hiapp.demo.TabTopLayoutActivity
 import com.zj.hiapp.logic.MainActivityLogic
 
-class
-MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
+class MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
