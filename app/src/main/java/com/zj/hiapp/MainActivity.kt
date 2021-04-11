@@ -7,6 +7,8 @@ import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter
 import com.zj.common.ui.common.HiBaseActivity
 import com.zj.hiapp.demo.*
+import com.zj.hiapp.http.ApiFactory
+import com.zj.hiapp.http.api.WanAndroid
 import com.zj.hiapp.logic.MainActivityLogic
 import com.zj.hiapp.test.CoroutinesTest
 import kotlinx.coroutines.Dispatchers
@@ -20,9 +22,7 @@ class MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        GlobalScope.launch {
-            val readFile = Test.readFile(assets, "")
-        }
+        val execute = ApiFactory.create(WanAndroid::class.java).getBanner("").execute()
     }
 
 

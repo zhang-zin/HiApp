@@ -13,5 +13,8 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+
+        val indexOf = "https://api.devio.org/v1/".split("/").last()
+        "https://api.devio.org/v1/".indexOf(indexOf)
     }
 }
