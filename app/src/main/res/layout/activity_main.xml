@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tab_bottom_layout"
     android:layout_width="match_parent"
@@ -56,5 +57,12 @@
         android:padding="5dp"
         android:text="banner"
         android:textSize="25sp" />
+
+    <com.zj.common.ui.common.InputItemLayout
+        android:layout_width="match_parent"
+        app:hint="请输入密码"
+        app:title="密码"
+        android:layout_height="wrap_content" />
+
 
 </LinearLayout>
