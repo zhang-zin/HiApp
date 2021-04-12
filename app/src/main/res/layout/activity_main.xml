@@ -60,9 +60,13 @@
 
     <com.zj.common.ui.common.InputItemLayout
         android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/color_white"
+        android:paddingLeft="16dp"
+        app:bottomLineAppearance="@style/leftMargin_lineAppearance"
         app:hint="请输入密码"
+        app:inputTextAppearance="@style/inputTextAppearance"
         app:title="密码"
-        android:layout_height="wrap_content" />
-
-
+        app:titleTextAppearance="@style/titleTextAppearance"
+        app:topLineAppearance="@style/lineAppearance" />
 </LinearLayout>

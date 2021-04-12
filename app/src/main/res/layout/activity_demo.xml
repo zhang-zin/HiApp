@@ -20,9 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/teal_200"
                 android:text="text1"
-                android:textColor="@color/black"
                 android:textSize="40sp" />
 
             <TextView
@@ -30,9 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/teal_200"
                 android:text="text1"
-                android:textColor="@color/black"
                 android:textSize="40sp" />
 
             <TextView
@@ -40,9 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/teal_200"
                 android:text="text1"
-                android:textColor="@color/black"
                 android:textSize="40sp" />
 
             <TextView
@@ -50,9 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/teal_200"
                 android:text="text1"
-                android:textColor="@color/black"
                 android:textSize="40sp" />
 
             <TextView
@@ -60,9 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/teal_200"
                 android:text="text1"
-                android:textColor="@color/black"
                 android:textSize="40sp" />
 
             <TextView
@@ -70,9 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/teal_200"
                 android:text="text1"
-                android:textColor="@color/black"
                 android:textSize="40sp" />
 
             <TextView
@@ -80,9 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/teal_200"
                 android:text="text1"
-                android:textColor="@color/black"
                 android:textSize="40sp" />
 
             <TextView
@@ -90,9 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/teal_200"
                 android:text="text1"
-                android:textColor="@color/black"
                 android:textSize="40sp" />
 
             <TextView
@@ -100,9 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/teal_200"
                 android:text="text1"
-                android:textColor="@color/black"
                 android:textSize="40sp" />
 
             <TextView
@@ -110,9 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/teal_200"
                 android:text="text1"
-                android:textColor="@color/black"
                 android:textSize="40sp" />
 
             <TextView
@@ -120,9 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/teal_200"
                 android:text="text1"
-                android:textColor="@color/black"
                 android:textSize="40sp" />
 
             <TextView
@@ -130,9 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/teal_200"
                 android:text="text1"
-                android:textColor="@color/black"
                 android:textSize="40sp" />
 
             <TextView
@@ -140,9 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/teal_200"
                 android:text="text1"
-                android:textColor="@color/black"
                 android:textSize="40sp" />
 
             <TextView
@@ -150,9 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/teal_200"
                 android:text="text1"
-                android:textColor="@color/black"
                 android:textSize="40sp" />
 
         </LinearLayout>

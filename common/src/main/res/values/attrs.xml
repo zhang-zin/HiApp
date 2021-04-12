@@ -10,6 +10,7 @@
     <declare-styleable name="InputItemLayout">
         <attr name="hint" format="string" />
         <attr name="title" format="string" />
+        <attr name="maxInputLength" format="integer"/>
         <attr name="inputType" format="enum">
             <enum name="text" value="0" />
             <enum name="password" value="1" />
@@ -30,7 +31,7 @@
     <declare-styleable name="titleTextAppearance">
         <attr name="titleColor" format="color" />
         <attr name="titleSize" format="dimension" />
-        <attr name="minSize" format="dimension" />
+        <attr name="minWidth" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="lineAppearance">

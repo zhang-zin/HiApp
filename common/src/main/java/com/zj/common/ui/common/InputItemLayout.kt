@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.drawable.ColorDrawable
+import android.text.InputFilter
 import android.text.InputType
 import android.util.AttributeSet
 import android.util.TypedValue
@@ -47,7 +48,9 @@ open class InputItemLayout : LinearLayout {
             attributeSet.getResourceId(R.styleable.InputItemLayout_titleTextAppearance, 0)
         val hint = attributeSet.getString(R.styleable.InputItemLayout_hint)
         val inputType = attributeSet.getInt(R.styleable.InputItemLayout_inputType, 0)
-        parseInputStyle(inputStyleId, hint, inputType)
+        val maxInputLength =
+            attributeSet.getInt(R.styleable.InputItemLayout_maxInputLength, 20)
+        parseInputStyle(inputStyleId, hint, inputType, maxInputLength)
 
         //解析上下 分割线资源属性
         val topLineStyleId =
@@ -93,7 +96,7 @@ open class InputItemLayout : LinearLayout {
         return line
     }
 
-    private fun parseInputStyle(resId: Int, hint: String?, inputType: Int) {
+    private fun parseInputStyle(resId: Int, hint: String?, inputType: Int, maxInputLength: Int) {
         val inputAttributeSet =
             context.obtainStyledAttributes(resId, R.styleable.inputTextAppearance)
         val hintColor = inputAttributeSet.getColor(
@@ -106,30 +109,33 @@ open class InputItemLayout : LinearLayout {
         )
         val testSize = inputAttributeSet.getDimensionPixelSize(
             R.styleable.inputTextAppearance_textSize,
-            applyUnit(10f)
+            applyUnit(15f)
         )
         val editText = EditText(context)
+        editText.setPadding(0, 0, 0, 0)
+        editText.filters = arrayOf(InputFilter.LengthFilter(maxInputLength)) //最大可以输入的字符数
         val params = LayoutParams(LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
         params.weight = 1f
         editText.layoutParams = params
 
         editText.hint = hint
         editText.setHintTextColor(hintColor)
-
         editText.setTextColor(inputColor)
-        editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, testSize.toFloat())
+        editText.gravity = Gravity.START or (Gravity.CENTER)
+
+        editText.setTextSize(TypedValue.COMPLEX_UNIT_PX, testSize.toFloat())
 
         editText.setBackgroundColor(Color.TRANSPARENT)
-        editText.gravity = Gravity.LEFT and Gravity.CENTER
         when (inputType) {
             0 -> {
-                editText.inputType = InputType.TYPE_TEXT_VARIATION_NORMAL
+                editText.inputType = InputType.TYPE_CLASS_TEXT
             }
             1 -> {
-                editText.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+                editText.inputType =
+                    InputType.TYPE_TEXT_VARIATION_PASSWORD or InputType.TYPE_CLASS_TEXT
             }
             2 -> {
-                editText.inputType = InputType.TYPE_NUMBER_VARIATION_NORMAL
+                editText.inputType = InputType.TYPE_CLASS_NUMBER
             }
         }
         addView(editText)
@@ -142,30 +148,28 @@ open class InputItemLayout : LinearLayout {
 
         val titleColor = titleAttributeSet.getColor(
             R.styleable.titleTextAppearance_titleColor,
-            resources.getColor(R.color.color_000)
+            resources.getColor(R.color.color_565)
         )
 
         val titleSize = titleAttributeSet.getDimensionPixelSize(
             R.styleable.titleTextAppearance_titleSize,
             applyUnit(15f)
         )
-        val minSize = titleAttributeSet.getDimensionPixelSize(
-            R.styleable.titleTextAppearance_minSize,
-            applyUnit(0f)
+        val minWidth = titleAttributeSet.getDimensionPixelSize(
+            R.styleable.titleTextAppearance_minWidth, 0
         )
 
-        val textView = TextView(context)
-        textView.setTextColor(titleColor)
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, titleSize.toFloat())
+        val titleView = TextView(context)
+        titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize.toFloat())  //sp---当做sp在转换一次
+        titleView.setTextColor(titleColor)
 
         val layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT)
-        textView.layoutParams = layoutParams
-        textView.minWidth = minSize
-        textView.text
-        textView.gravity = Gravity.CENTER
-        textView.text = title
+        titleView.layoutParams = layoutParams
+        titleView.minWidth = minWidth
+        titleView.gravity = Gravity.START or Gravity.CENTER
+        titleView.text = title
 
-        addView(textView)
+        addView(titleView)
         titleAttributeSet.recycle()
     }
 
