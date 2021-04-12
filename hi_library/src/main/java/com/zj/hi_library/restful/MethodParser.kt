@@ -2,14 +2,12 @@ package com.zj.hi_library.restful
 
 import com.zj.hi_library.restful.annotation.*
 import java.lang.Exception
-import java.lang.reflect.Method
-import java.lang.reflect.ParameterizedType
-import java.lang.reflect.Type
+import java.lang.reflect.*
 
 /**
  * 解析请求方法上的注解，得到需要的请求参数和返回值
  */
-class MethodParser(private val baseUrl: String, method: Method, args: Array<Any>) {
+class MethodParser(private val baseUrl: String, method: Method) {
 
     private var domainUrl: String? = null
     private var formPost: Boolean = false
@@ -23,9 +21,6 @@ class MethodParser(private val baseUrl: String, method: Method, args: Array<Any>
     init {
         // 解析方法上的注解 比如：get、headers
         parserMethodAnnotations(method)
-
-        // 解析方法入参的注解，比如：path、filed
-        parserMethodParameters(method, args)
 
         // 解析方法的返回值类型
         parserMethodReturnType(method)
@@ -44,7 +39,7 @@ class MethodParser(private val baseUrl: String, method: Method, args: Array<Any>
      * }
      */
     private fun parserMethodReturnType(method: Method) {
-        if (method.returnType != HiCall::class) {
+        if (method.returnType != HiCall::class.java) {
             throw IllegalStateException(
                 String.format(
                     "method %s is must be type of HiCall.class",
@@ -56,12 +51,13 @@ class MethodParser(private val baseUrl: String, method: Method, args: Array<Any>
         if (genericReturnType is ParameterizedType) {
             val actualTypeArguments = genericReturnType.actualTypeArguments
             require(actualTypeArguments.size == 1) {
-                String.format(
-                    "method %s can only has one generic return type",
-                    method.name
-                )
+                String.format("method %s can only has one generic return type", method.name)
             }
-            returnType = actualTypeArguments[0]
+            val type = actualTypeArguments[0]
+            require(validateGenericType(type)) {
+                String.format("method %s generic return type must not be an unknown type. " + method.name)
+            }
+            returnType = type
         } else {
             throw IllegalStateException(
                 String.format(
@@ -73,6 +69,8 @@ class MethodParser(private val baseUrl: String, method: Method, args: Array<Any>
     }
 
     private fun parserMethodParameters(method: Method, args: Array<Any>) {
+        parameters.clear() //每次调用api接口都需要清楚上一次的请求，因为存在复用
+
         //@Path("province") province: Int, @Filed("page") page: Int
         val parameterAnnotations = method.parameterAnnotations
         val equals = parameterAnnotations.size == args.size
@@ -132,6 +130,31 @@ class MethodParser(private val baseUrl: String, method: Method, args: Array<Any>
         return false
     }
 
+    private fun validateGenericType(type: Type): Boolean {
+        /**
+         *wrong
+         *  fun test():HiCall<Any>
+         *  fun test():HiCall<List<*>>
+         *  fun test():HiCall<ApiInterface>
+         *expect
+         *  fun test():HiCall<User>
+         */
+        //如果指定的泛型是集合类型的，那还检查集合的泛型参数
+        if (type is GenericArrayType) {
+            return validateGenericType(type.genericComponentType)
+        }
+
+        //如果指定的泛型是一个接口 也不行
+        if (type is TypeVariable<*>) {
+            return false
+        }
+        //如果指定的泛型是一个通配符 ？extends Number 也不行
+        if (type is WildcardType) {
+            return false
+        }
+        return true
+    }
+
     private fun parserMethodAnnotations(method: Method) {
         val annotations = method.annotations
         for (annotation in annotations) {
@@ -184,7 +207,11 @@ class MethodParser(private val baseUrl: String, method: Method, args: Array<Any>
         }
     }
 
-    fun newRequest(): HiRequest {
+    fun newRequest(method: Method, args: Array<out Any>?): HiRequest {
+        val arguments: Array<Any> = args as Array<Any>? ?: arrayOf()
+        // 解析方法入参的注解，比如：path、filed
+        parserMethodParameters(method, arguments)
+
         val hiRequest = HiRequest()
         hiRequest.domainUrl = domainUrl
         hiRequest.headers = headers
@@ -197,8 +224,8 @@ class MethodParser(private val baseUrl: String, method: Method, args: Array<Any>
     }
 
     companion object {
-        fun parse(baseUrl: String, method: Method, args: Array<Any>): MethodParser {
-            return MethodParser(baseUrl, method, args)
+        fun parse(baseUrl: String, method: Method): MethodParser {
+            return MethodParser(baseUrl, method)
         }
     }
 

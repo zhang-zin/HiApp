@@ -15,7 +15,7 @@ class BizInterceptor : HiInterceptor {
             val outputBuilder = StringBuilder()
             val httpMethod = if (request.httpMethod == HiRequest.METHOD.GET) "GET" else "POST"
             val requestUrl = request.endPointUrl()
-            outputBuilder.append("\n$requestUrl==>$httpMethod\n")
+            outputBuilder.append("\n$requestUrl-->$httpMethod\n")
 
             request.headers?.let {
                 outputBuilder.appendLine("【headers")
@@ -26,14 +26,14 @@ class BizInterceptor : HiInterceptor {
             }
 
             request.parameters?.let {
-                outputBuilder.appendLine("【parameters==>")
+                outputBuilder.appendLine("【parameters-->")
                 it.forEach(action = { parameter ->
                     outputBuilder.appendLine(parameter.key + ":" + parameter.value)
                 })
                 outputBuilder.appendLine("parameters】")
             }
 
-            outputBuilder.append("【response==>\n")
+            outputBuilder.append("【response-->\n")
             outputBuilder.append(response!!.rawData + "\n")
             outputBuilder.append("response】\n")
 

@@ -5,6 +5,6 @@ import com.zj.hi_library.restful.annotation.GET
 
 interface WanAndroid {
 
-    @GET("/banner/json")
-    fun getBanner(v:String): HiCall<String>
+    @GET("banner/json")
+    fun getBanner(): HiCall<String>
 }

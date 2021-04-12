@@ -4,7 +4,7 @@ import com.zj.hi_library.restful.HiRestful
 
 object ApiFactory {
 
-    private const val baseUrl = "https://www.wanandroid.com"
+    private const val baseUrl = "https://www.wanandroid.com/"
     private val hiRestful: HiRestful = HiRestful(baseUrl, RetrofitCallFactory(baseUrl))
 
     init {

@@ -12,7 +12,7 @@ class Scheduler(
         return ProxyCall(newCall, request)
     }
 
-    internal inner class ProxyCall<T>(val delegate: HiCall<T>, val request: HiRequest) : HiCall<T> {
+    internal inner class ProxyCall<T>(private val delegate: HiCall<T>, val request: HiRequest) : HiCall<T> {
         override fun execute(): HiResponse<T> {
             dispatchInterceptor(request, null)
             val response = delegate.execute()
@@ -25,15 +25,11 @@ class Scheduler(
             delegate.enqueue(object : HiCallback<T> {
                 override fun onSuccess(response: HiResponse<T>) {
                     dispatchInterceptor(request, response)
-                    if (callback != null) {
-                        callback.onSuccess(response)
-                    }
+                    callback.onSuccess(response)
                 }
 
                 override fun onFailed(throwable: Throwable) {
-                    if (callback != null) {
-                        callback.onFailed(throwable)
-                    }
+                    callback.onFailed(throwable)
                 }
             })
         }

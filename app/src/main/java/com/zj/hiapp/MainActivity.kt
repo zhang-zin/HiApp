@@ -22,7 +22,12 @@ class MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val execute = ApiFactory.create(WanAndroid::class.java).getBanner("").execute()
+        Thread() {
+            val execute = ApiFactory
+                .create(WanAndroid::class.java)
+                .getBanner()
+                .execute()
+        }.start()
     }
 
 

@@ -1,5 +1,6 @@
 package com.zj.hi_library.restful
 
+import java.lang.reflect.InvocationHandler
 import java.lang.reflect.Method
 import java.lang.reflect.Proxy
 import java.util.concurrent.ConcurrentHashMap
@@ -24,14 +25,15 @@ open class HiRestful constructor(
     fun <T> create(service: Class<T>): T {
         return Proxy.newProxyInstance(
             service.classLoader,
-            arrayOf<Class<*>>(service)
-        ) { proxy, method, args ->
+            arrayOf(service)
+        ) { _, method, args ->
             var methodParser = methodParsers[method]
             if (methodParser == null) {
-                methodParser = MethodParser.parse(baseUrl, method, args)
+                methodParser = MethodParser.parse(baseUrl, method)
                 methodParsers[method] = methodParser
             }
-            val request = methodParser.newRequest()
+            // 每次调用都应该解析入参
+            val request = methodParser.newRequest(method, args)
             //callFactory.newCall(request)
             scheduler.newCall(request)
         } as T

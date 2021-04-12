@@ -31,7 +31,11 @@ class GsonConvert : HiConvert {
             val data = jsonObject.opt("data")
             if ((data is JSONObject) or (data is JSONArray)) {
                 if (response.code == HiResponse.SUCCESS) {
-                    response.data = gson.fromJson(data.toString(), dataType)
+                    if (dataType.typeName == "java.lang.String"){
+                        response.data = data.toString() as T?
+                    }else{
+                        response.data = gson.fromJson(data.toString(), dataType)
+                    }
                 } else {
                     response.errorData = gson.fromJson<MutableMap<String, String>>(
                         data.toString(),
