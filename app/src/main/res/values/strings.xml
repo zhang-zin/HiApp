@@ -8,8 +8,67 @@
     <string name="if_category">&#xe600;</string>
     <string name="if_favorite">&#xe639;</string>
     <string name="if_favorite1">&#xe620;</string>
+
+    <string name="if_unexpected">&#xe606;</string>
+    <string name="if_unexpected1">&#xe692;</string>
+    <string name="if_empty">&#xe601;</string>
+    <string name="if_wifi_error">&#xe876;</string>
+    <string name="if_wifi_error1">&#xe501;</string>
+    <string name="if_back">&#xe607;</string>
+    <string name="if_error_tips">&#xe648;</string>
+    <string name="if_back_soild">&#xe680;</string>
+
+    <string name="if_notify">&#xe654;</string>
+    <string name="if_history">&#xe606;</string>
+    <string name="if_address">&#xe603;</string>
+    <string name="if_collection">&#xe604;</string>
+    <string name="if_search">&#xe987;</string>
+    <string name="if_clear">&#xe60b;</string>
+    <string name="if_delete">&#xe60a;</string>
     <string name="if_empty1">&#xe637;</string>
     <string name="if_empty2">&#xe6cf;</string>
     <string name="if_empty3">&#xe60c;</string>
+    <string name="if_history2">&#xe6d0;</string>
+    <string name="if_notice_msg">&#xe609;</string>
+    <string name="if_notice_recommend">&#xe608;</string>
+    <string name="if_goods">&#xe6d1;</string>
+    <string name="if_share">&#xe60d;</string>
+    <string name="if_shop">&#xe895;</string>
+    <string name="if_like">&#xe60e;</string>
+    <string name="if_add">&#xe62b;</string>
+    <string name="if_location">&#xe60f;</string>
+    <string name="if_close">&#xe611;</string>
+    <string name="if_checked">&#xe612;</string>
+    <string name="if_checked2">&#xe62c;</string>
+    <string name="if_right_arrow">&#xe669;</string>
+    <string name="if_alipay">&#xe674;</string>
+    <string name="if_wxpay">&#xe62d;</string>
+
     <string name="degrade_title">页面不见了，开发小哥正在加快修复</string>
+    <string name="action_login">登录</string>
+    <string name="action_registered">注册</string>
+    <string name="input_item_hint_user_name">请输入用户名</string>
+    <string name="input_item_title_user_name">用户名</string>
+    <string name="user_name_or_user_pwd_is_empty_tips">请输入用户名和密码</string>
+    <string name="input_item_hint_user_email">请输入邮箱</string>
+    <string name="input_item_title_user_email">邮箱</string>
+    <string name="input_item_hint_user_pwd">请输入密码</string>
+    <string name="input_item_title_user_pwd">密码</string>
+    <string name="input_item_hint_user_pwd_again">请再次输入密码</string>
+    <string name="check_input_error">请检查是否全部输入</string>
+    <string name="again_input_pwd_errro">两次输入的密码不一致</string>
+    <string name="action_register_fail">注册失败</string>
+    <string name="profile_page_need_login_tips">登录解锁更多功能</string>
+
+    <string name="item_notify">&#xe654;  课程通知</string>
+    <string name="item_share">&#xe60d;   我的分享</string>
+    <string name="item_collection">&#xe604;   我的收藏</string>
+    <string name="item_history">&#xe606;   阅读历史</string>
+    <string name="item_setting">&#xe60f;   系统设置</string>
+    <string name="collection_count">0\n收藏</string>
+    <string name="history_count">0\n历史浏览</string>
+    <string name="integral_count">20\n积分</string>
+    <string name="need_login_tips">请先登录</string>
+
+
 </resources>

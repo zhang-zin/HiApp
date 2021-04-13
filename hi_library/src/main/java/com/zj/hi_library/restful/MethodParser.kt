@@ -87,7 +87,7 @@ class MethodParser(private val baseUrl: String, method: Method) {
             require(annotations.size <= 1) { "filed can only has one annotation :index = $index" }
 
             val value = args[index]
-            require(!isPrimitive(value)) { "8 basic types are supported for now, index = $index" }
+            require(isPrimitive(value)) { "8 basic types are supported for now, index = $index" }
 
             val annotation = annotations[0]
             if (annotation is Filed) {

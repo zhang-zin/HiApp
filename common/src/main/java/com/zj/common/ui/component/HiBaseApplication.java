@@ -1,4 +1,4 @@
-package com.zj.common.ui.common;
+package com.zj.common.ui.component;
 
 import android.app.Application;
 
@@ -10,6 +10,6 @@ public class HiBaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        HiLogManager.init(this, true, 0);
+        HiLogManager.init(this, false, 0);
     }
 }

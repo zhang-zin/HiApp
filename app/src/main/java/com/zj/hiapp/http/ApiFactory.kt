@@ -9,6 +9,7 @@ object ApiFactory {
 
     init {
         hiRestful.addInterceptor(BizInterceptor())
+        hiRestful.addInterceptor(HttpStatusInterceptor())
     }
 
     fun <T> create(service: Class<T>): T {

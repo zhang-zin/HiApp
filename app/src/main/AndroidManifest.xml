@@ -12,15 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".biz.RegisterActivity"></activity>
+        <activity android:name=".biz.LoginActivity" />
         <activity android:name=".demo.HiBannerDemoActivity" />
         <activity android:name=".demo.HiRefreshDemoActivity" />
-
         <activity android:name=".router.DegradeGlobalActivity" />
         <activity android:name=".biz.VipActivity" />
         <activity android:name=".biz.AuthenticationActivity" />
         <activity android:name=".biz.ProfileDetailActivity" />
-        <activity android:name=".demo.HiRefreshDemoActivity" />
         <activity android:name=".demo.TabTopLayoutActivity" />
         <activity android:name=".demo.LogActivity" />
         <activity android:name=".demo.TabBottomLayoutActivity" />

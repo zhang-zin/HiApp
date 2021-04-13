@@ -1,18 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="个人资料"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/user_avatar"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/shadow_circle"
+        android:src="@drawable/ic_avatar_default"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:maxLength="10"
+        android:singleLine="true"
+        android:text="@string/action_login"
+        android:textColor="@color/color_000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/login_desc"
+        app:layout_constraintStart_toEndOf="@+id/user_avatar"
+        app:layout_constraintTop_toTopOf="@+id/user_avatar" />
+
+    <TextView
+        android:id="@+id/login_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/profile_page_need_login_tips"
+        android:textColor="@color/color_999"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_avatar"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/tv_item_collection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="@string/collection_count"
+        app:layout_constraintEnd_toStartOf="@+id/tv_item_history"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_avatar" />
+
+    <TextView
+        android:id="@+id/tv_item_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/history_count"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_item_collection"
+        app:layout_constraintEnd_toStartOf="@+id/tv_item_integral"
+        app:layout_constraintStart_toEndOf="@+id/tv_item_collection"
+        app:layout_constraintTop_toTopOf="@+id/tv_item_collection" />
+
+    <TextView
+        android:id="@+id/tv_item_integral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/integral_count"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_item_history"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_item_history"
+        app:layout_constraintTop_toTopOf="@+id/tv_item_history" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="10dp"
+        android:background="@color/color_eee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_history" />
+
+    <com.zj.common.ui.view.IconFontTextView
+        android:id="@+id/item_notify"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        android:layout_marginStart="@dimen/start_value"
+        android:gravity="center_vertical"
+        android:text="@string/item_notify"
+        android:textColor="@color/color_444"
+        android:textSize="@dimen/item_text_size"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <com.zj.common.ui.view.IconFontTextView
+        android:id="@+id/item_share"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        android:layout_marginStart="@dimen/start_value"
+        android:gravity="center_vertical"
+        android:text="@string/item_share"
+        android:textColor="@color/color_444"
+        android:textSize="@dimen/item_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_notify" />
+
+    <com.zj.common.ui.view.IconFontTextView
+        android:id="@+id/item_collection"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        android:layout_marginStart="@dimen/start_value"
+        android:gravity="center_vertical"
+        android:text="@string/item_collection"
+        android:textColor="@color/color_444"
+        android:textSize="@dimen/item_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_share" />
+
+    <com.zj.common.ui.view.IconFontTextView
+        android:id="@+id/item_history"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        android:layout_marginStart="@dimen/start_value"
+        android:gravity="center_vertical"
+        android:text="@string/item_history"
+        android:textColor="@color/color_444"
+        android:textSize="@dimen/item_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_collection" />
+
+    <com.zj.common.ui.view.IconFontTextView
+        android:id="@+id/item_setting"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        android:layout_marginStart="@dimen/start_value"
+        android:gravity="center_vertical"
+        android:text="@string/item_setting"
+        android:textColor="@color/color_444"
+        android:textSize="@dimen/item_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_history" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

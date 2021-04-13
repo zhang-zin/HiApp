@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/background</item>
+    </style>
+
     <style name="inputTextAppearance">
         <item name="hintColor">@color/color_C1B</item>
         <item name="inputColor">@color/color_565</item>
@@ -23,6 +31,7 @@
 
     <style name="leftMargin_lineAppearance" parent="lineAppearance">
         <item name="leftMargin">10dp</item>
+        <item name="rightMargin">10dp</item>
     </style>
 
 </resources>

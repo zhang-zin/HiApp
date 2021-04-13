@@ -3,6 +3,7 @@ package com.zj.hi_library.restful
 open class HiResponse<T> {
 
     companion object {
+        val RC_NEED_LOGIN = -1001
         val SUCCESS: Int = 0
     }
 

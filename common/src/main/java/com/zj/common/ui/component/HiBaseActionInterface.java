@@ -1,4 +1,4 @@
-package com.zj.common.ui.common;
+package com.zj.common.ui.component;
 
 public interface HiBaseActionInterface {
 }

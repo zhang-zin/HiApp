@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".biz.RegisterActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height"
+            android:background="@color/main"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.zj.common.ui.view.IconFontTextView
+                android:id="@+id/toolbar_action_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingStart="@dimen/start_value"
+                android:paddingEnd="@dimen/start_value"
+                android:text="@string/if_back"
+                android:textSize="@dimen/action_back_text_size" />
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/action_registered"
+                android:textColor="@color/color_white"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <com.zj.common.ui.view.InputItemLayout
+            android:id="@+id/input_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height"
+            android:layout_marginTop="15dp"
+            android:paddingStart="@dimen/start_value"
+            android:paddingEnd="@dimen/start_value"
+            app:bottomLineAppearance="@style/leftMargin_lineAppearance"
+            app:hint="@string/input_item_hint_user_name"
+            app:inputTextAppearance="@style/inputTextAppearance"
+            app:title="@string/input_item_title_user_name"
+            app:titleTextAppearance="@style/titleTextAppearance"
+            app:topLineAppearance="@style/lineAppearance" />
+
+        <com.zj.common.ui.view.InputItemLayout
+            android:id="@+id/input_user_email"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height"
+            android:paddingStart="@dimen/start_value"
+            android:paddingEnd="@dimen/start_value"
+            app:bottomLineAppearance="@style/lineAppearance"
+            app:hint="@string/input_item_hint_user_email"
+            app:inputTextAppearance="@style/inputTextAppearance"
+            app:inputType="password"
+            app:title="@string/input_item_title_user_email"
+            app:titleTextAppearance="@style/titleTextAppearance" />
+
+        <com.zj.common.ui.view.InputItemLayout
+            android:id="@+id/input_user_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height"
+            android:paddingStart="@dimen/start_value"
+            android:paddingEnd="@dimen/start_value"
+            app:bottomLineAppearance="@style/lineAppearance"
+            app:hint="@string/input_item_hint_user_pwd"
+            app:inputTextAppearance="@style/inputTextAppearance"
+            app:inputType="password"
+            app:title="@string/input_item_title_user_pwd"
+            app:titleTextAppearance="@style/titleTextAppearance" />
+
+        <com.zj.common.ui.view.InputItemLayout
+            android:id="@+id/input_user_pwd_again"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height"
+            android:paddingStart="@dimen/start_value"
+            android:paddingEnd="@dimen/start_value"
+            app:bottomLineAppearance="@style/lineAppearance"
+            app:hint="@string/input_item_hint_user_pwd_again"
+            app:inputTextAppearance="@style/inputTextAppearance"
+            app:inputType="password"
+            app:title="@string/input_item_title_user_pwd"
+            app:titleTextAppearance="@style/titleTextAppearance" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/action_register"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_margin="@dimen/start_value"
+            android:text="@string/action_registered"
+            android:textColor="@color/color_white"
+            android:textSize="16sp"
+            app:backgroundTint="@color/main"
+            app:cornerRadius="6dp" />
+
+    </LinearLayout>
+</layout>

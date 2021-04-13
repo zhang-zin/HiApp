@@ -1,4 +1,4 @@
-package com.zj.common.ui.common
+package com.zj.common.ui.view
 
 import android.content.Context
 import android.graphics.Canvas
@@ -22,6 +22,7 @@ open class InputItemLayout : LinearLayout {
     private var bottomLineStyle: Line
     private val topPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val bottomPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private lateinit var editText: EditText
 
     constructor(context: Context) : this(context, null)
 
@@ -111,7 +112,7 @@ open class InputItemLayout : LinearLayout {
             R.styleable.inputTextAppearance_textSize,
             applyUnit(15f)
         )
-        val editText = EditText(context)
+        editText = EditText(context)
         editText.setPadding(0, 0, 0, 0)
         editText.filters = arrayOf(InputFilter.LengthFilter(maxInputLength)) //最大可以输入的字符数
         val params = LayoutParams(LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
@@ -207,6 +208,8 @@ open class InputItemLayout : LinearLayout {
     private fun applyUnit(value: Float, unit: Int = TypedValue.COMPLEX_UNIT_SP): Int {
         return TypedValue.applyDimension(unit, value, resources.displayMetrics).toInt()
     }
+
+    fun getEditText() = editText
 
     internal class Line {
 

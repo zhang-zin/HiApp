@@ -1,57 +1,23 @@
 package com.zj.hiapp
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import com.zj.common.ui.common.HiBaseActivity
-import com.zj.hiapp.demo.*
-import com.zj.hiapp.http.ApiFactory
-import com.zj.hiapp.http.api.WanAndroid
+import com.zj.common.ui.component.HiBaseActivity
 import com.zj.hiapp.logic.MainActivityLogic
-import com.zj.hiapp.test.CoroutinesTest
-import kotlinx.coroutines.Dispatchers
-import kotlin.coroutines.Continuation
 
 class MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
+
+    lateinit var mainActivityLogic: MainActivityLogic
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        mainActivityLogic = MainActivityLogic(this, savedInstanceState)
 
-        Thread() {
-            val execute = ApiFactory
-                .create(WanAndroid::class.java)
-                .getBanner()
-                .execute()
-        }.start()
     }
 
-
-    fun click(view: View) {
-        when (view.id) {
-            R.id.tv_log -> {
-                // ARouter.getInstance().build("/b/xx").navigation()
-                //   startActivity(Intent(this, LogActivity::class.java))
-                request()
-            }
-            R.id.tv_tab_bottom -> {
-                startActivity(Intent(this, TabBottomLayoutActivity::class.java))
-            }
-            R.id.tv_tab_top -> {
-                startActivity(Intent(this, TabTopLayoutActivity::class.java))
-            }
-            R.id.tv_refresh -> startActivity(Intent(this, HiRefreshDemoActivity::class.java))
-            R.id.tv_banner -> startActivity(Intent(this, HiBannerDemoActivity::class.java))
-
-        }
-    }
-
-    private fun request() {
-        val callBack = Continuation<String>(Dispatchers.Main) {
-            Log.e("zhang 结果", it.getOrNull())
-        }
-        CoroutinesTest.request1(callBack)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        mainActivityLogic.onSaveInstanceState(outState)
     }
 
 }

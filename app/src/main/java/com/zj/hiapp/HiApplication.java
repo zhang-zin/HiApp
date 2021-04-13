@@ -1,7 +1,7 @@
 package com.zj.hiapp;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.zj.common.ui.common.HiBaseApplication;
+import com.zj.common.ui.component.HiBaseApplication;
 
 public class HiApplication extends HiBaseApplication {
 

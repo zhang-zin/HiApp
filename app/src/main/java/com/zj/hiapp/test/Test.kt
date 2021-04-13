@@ -1,4 +1,4 @@
-package com.zj.hiapp
+package com.zj.hiapp.test
 
 import android.content.res.AssetManager
 import kotlinx.coroutines.delay

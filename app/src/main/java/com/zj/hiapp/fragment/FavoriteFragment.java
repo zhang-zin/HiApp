@@ -1,6 +1,6 @@
 package com.zj.hiapp.fragment;
 
-import com.zj.common.ui.common.HiBaseFragment;
+import com.zj.common.ui.component.HiBaseFragment;
 import com.zj.hiapp.R;
 
 public class FavoriteFragment extends HiBaseFragment {
