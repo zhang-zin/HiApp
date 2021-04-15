@@ -21,17 +21,17 @@ import com.zj.hi_ui.R
 import com.zj.hi_ui.ui.hiitem.HiViewHolder
 import kotlinx.android.synthetic.main.hi_slider_menu_item.view.*
 
-class HiSlideView @JvmOverloads constructor(
+class HiSliderView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
     private var menuItemAttrs: MenuItemAttrs
-    private val MENU_ITEM_WIDTH = applyUnit(100f).toInt()
+    private val MENU_ITEM_WIDTH = applyUnit(140f).toInt()
     private val MENU_ITEM_HEIGHT = applyUnit(45f).toInt()
     private val MENU_ITEM_TEXT_SIZE = applyUnit(16f, TypedValue.COMPLEX_UNIT_SP).toInt()
 
     private val TEXT_COLOR_NORMAL = Color.parseColor("#666666")
-    private val TEXT_COLOR_SELECT = Color.parseColor("#DD3127")
+    private val TEXT_COLOR_SELECT = Color.parseColor("#4282f4")
 
     private val BG_COLOR_NORMAL = Color.parseColor("#F7F8F9")
     private val BG_COLOR_SELECT = Color.parseColor("#ffffff")
@@ -253,9 +253,9 @@ class HiSlideView @JvmOverloads constructor(
                 notifyItemChanged(currentSelectIndex)
                 notifyItemChanged(lastSelectIndex)
             }
-            if (currentSelectIndex == lastSelectIndex) {
-                lastSelectIndex = currentSelectIndex
+            if (currentSelectIndex == position) {
                 onItemClick(holder, position)
+                lastSelectIndex = currentSelectIndex
             }
             applyItemAttr(position, holder)
             onBindView(holder, position)

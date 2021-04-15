@@ -37,7 +37,7 @@ class BizInterceptor : HiInterceptor {
             outputBuilder.append(response!!.rawData + "\n")
             outputBuilder.append("response】\n")
 
-            HiLog.eT("wanAndroid",outputBuilder.toString())
+            HiLog.eT("wanAndroid", outputBuilder.toString())
         }
         return false
     }
