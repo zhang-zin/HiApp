@@ -28,6 +28,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            buildConfigField("String", "BUILD_TIME", "\"" + buildTime() + "\"")
+            //gradle:4.1.1 不是app模块BuildConfig 没有VERSION_CODE、VERSION_NAME自己写入
+            buildConfigField("String", "VERSION_CODE", "\"" + lib_version_code + "\"")
+            buildConfigField("String", "VERSION_NAME", "\"" + lib_version_name + "\"")
+        }
     }
 
     buildFeatures {
@@ -44,6 +51,10 @@ android {
         //        freeCompilerArgs += ["-Xuse-experimental=kotlin.contracts.ExperimentalContracts",]
         freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn",]
     }
+}
+
+static def buildTime() {
+    return new Date().format("EE HH:mm:ss", TimeZone.getTimeZone("GMT+08:00"))
 }
 
 dependencies {

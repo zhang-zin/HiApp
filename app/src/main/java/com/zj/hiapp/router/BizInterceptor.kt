@@ -46,7 +46,7 @@ class BizInterceptor : IInterceptor {
 
     private fun loginIntercept() {
         Handler(Looper.getMainLooper()).post {
-            context.getString(R.string.need_login_tips)?.Toast()
+            context?.getString(R.string.need_login_tips)?.Toast()
             HiRoute.startActivity(null, destination = HiRoute.Destination.ACCOUNT_LOGIN)
         }
     }

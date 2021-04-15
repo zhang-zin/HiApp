@@ -1,3 +1,4 @@
+include ':hi_debugTools'
 include ':common'
 include ':hi_ui'
 include ':hi_library'

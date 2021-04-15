@@ -3,8 +3,6 @@ plugins {
 }
 apply from: '../dependencies.gradle'
 
-
-
 dependencies {
 
     api project(":hi_library")
