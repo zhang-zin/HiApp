@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -169,7 +170,11 @@ class HiSliderView @JvmOverloads constructor(
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HiViewHolder {
             val itemView = LayoutInflater.from(context).inflate(layoutRes, parent, false)
 
-            val remainSpace = width - paddingStart - paddingEnd - menuItemAttrs.width
+            val remainSpace = if (menuView.isVisible) {
+                width - paddingStart - paddingEnd - menuItemAttrs.width
+            } else {
+                width - paddingStart - paddingEnd
+            }
             val layoutManager = (parent as RecyclerView).layoutManager
             var spanCount = 0
 
@@ -181,7 +186,8 @@ class HiSliderView @JvmOverloads constructor(
 
             if (spanCount > 0) {
                 val itemWidth = remainSpace / spanCount
-                itemView.layoutParams = RecyclerView.LayoutParams(itemWidth, itemWidth)
+                itemView.layoutParams =
+                    RecyclerView.LayoutParams(itemWidth, RecyclerView.LayoutParams.WRAP_CONTENT)
             }
 
             return HiViewHolder(itemView)
@@ -219,6 +225,10 @@ class HiSliderView @JvmOverloads constructor(
     ) {
         menuView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         menuView.adapter = MenuAdapter(layoutRes, itemCount, onBindView, onItemClick)
+    }
+
+    fun setMenuViewVisibility(isVisibility: Boolean) {
+        menuView.visibility = if (isVisibility) View.VISIBLE else View.GONE
     }
 
     //region MenuAdapter

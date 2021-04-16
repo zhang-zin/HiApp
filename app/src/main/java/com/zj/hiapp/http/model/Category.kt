@@ -27,7 +27,7 @@ package com.zj.hiapp.http.model
     "visible":1
 }*/
 data class CategoryModel(
-    val children: List<Children>,
+    val children: List<ChildCategory>,
     val courseId: Int,
     val id: Int,
     val name: String,
@@ -37,7 +37,7 @@ data class CategoryModel(
     val visible: Int
 )
 
-data class Children(
+data class ChildCategory(
     val children: List<Any>,
     val courseId: Int,
     val id: Int,

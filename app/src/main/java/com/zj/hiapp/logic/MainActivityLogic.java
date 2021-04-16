@@ -15,7 +15,7 @@ import com.zj.common.tab.HiTabViewAdapter;
 import com.zj.hi_ui.ui.tab.bottom.HiTabBottomInfo;
 import com.zj.hi_ui.ui.tab.bottom.HiTabBottomLayout;
 import com.zj.hiapp.R;
-import com.zj.hiapp.fragment.CategoryFragment;
+import com.zj.hiapp.fragment.category.CategoryFragment;
 import com.zj.hiapp.fragment.FavoriteFragment;
 import com.zj.hiapp.fragment.HomePageFragment;
 import com.zj.hiapp.fragment.ProfileFragment;
