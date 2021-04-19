@@ -15,13 +15,13 @@ class ActivityManager private constructor() {
     private val activityRefs = ArrayList<WeakReference<Activity>>()
     private val frontBackCallbacks = ArrayList<FrontBackCallback>()
     private var activityStartCount = 0
-    private var front = true;
+    private var front = true
+
     fun init(application: Application) {
         application.registerActivityLifecycleCallbacks(InnerActivityLifecycleCallbacks())
     }
 
-    inner class InnerActivityLifecycleCallbacks :
-        android.app.Application.ActivityLifecycleCallbacks {
+    inner class InnerActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
         override fun onActivityPaused(activity: Activity) {
 
         }
@@ -94,18 +94,26 @@ class ActivityManager private constructor() {
         }
     }
 
-
+    /**
+     * 添加前台切换后台的回调
+     */
     fun addFrontBackCallback(callback: FrontBackCallback) {
         if (!frontBackCallbacks.contains(callback)) {
             frontBackCallbacks.add(callback)
         }
     }
 
+    /**
+     * 移除前台切换后台的回调
+     */
     fun removeFrontBackCallback(callback: FrontBackCallback) {
         frontBackCallbacks.remove(callback);
     }
 
     interface FrontBackCallback {
+        /**
+         * [front] true: 从后台到前台，false: 从前台到后台
+         */
         fun onChanged(front: Boolean)
     }
 
