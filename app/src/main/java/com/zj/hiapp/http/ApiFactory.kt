@@ -10,7 +10,7 @@ object ApiFactory {
     private val HTTPS_BASE_URL = "https://www.wanandroid.com/"
 
     private val isDegrade = SpUtil.getBoolean(SP_KEY_DEGRADE_HTTP)
-    private val baseUrl = if (isDegrade) HTTP_BASE_URL else HTTPS_BASE_URL
+    private val baseUrl = if (false) HTTP_BASE_URL else HTTPS_BASE_URL
 
     private val hiRestful: HiRestful = HiRestful(baseUrl, RetrofitCallFactory(baseUrl))
 

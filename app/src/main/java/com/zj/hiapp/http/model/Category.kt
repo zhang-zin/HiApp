@@ -1,5 +1,7 @@
 package com.zj.hiapp.http.model
 
+import java.io.Serializable
+
 /**
  * 体系分类
  */
@@ -35,7 +37,7 @@ data class CategoryModel(
     val parentChapterId: Int,
     val userControlSetTop: Boolean,
     val visible: Int
-)
+) : Serializable
 
 data class ChildCategory(
     val children: List<Any>,
@@ -46,4 +48,4 @@ data class ChildCategory(
     val parentChapterId: Int,
     val userControlSetTop: Boolean,
     val visible: Int
-)
+) : Serializable

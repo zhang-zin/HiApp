@@ -17,7 +17,7 @@ object HiStorage {
     fun <T> getCache(key: String): T? {
         val cache = CacheDatabase.getDatabase().cacheDao.getCache(key)
         return (if (cache?.data != null) {
-            toByteArray(cache.data)
+            toObject(cache.data!!)
         } else {
             null
         }) as? T
@@ -29,6 +29,9 @@ object HiStorage {
         CacheDatabase.getDatabase().cacheDao.deleteCache(cache)
     }
 
+    /**
+     * 需要继承Serializable
+     */
     private fun <T> toByteArray(body: T): ByteArray? {
         var baos: ByteArrayOutputStream? = null
         var oos: ObjectOutputStream? = null

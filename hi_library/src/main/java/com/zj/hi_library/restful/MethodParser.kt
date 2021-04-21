@@ -9,6 +9,7 @@ import java.lang.reflect.*
  */
 class MethodParser(private val baseUrl: String, method: Method) {
 
+    private var cacheStrategy: Int = CacheStrategy.NET_ONLY
     private var domainUrl: String? = null
     private var formPost: Boolean = false
     private var httpMethod: Int = 0
@@ -101,6 +102,8 @@ class MethodParser(private val baseUrl: String, method: Method) {
                 if (replaceName != null && replacement != null) {
                     relativeUrl = relativeUrl.replace("{$replaceName}", replacement)
                 }
+            } else if (annotation is CacheStrategy) {
+                cacheStrategy = value as Int
             } else {
                 throw IllegalStateException(
                     String.format(
@@ -187,6 +190,10 @@ class MethodParser(private val baseUrl: String, method: Method) {
                 is BaseUrl -> {
                     domainUrl = annotation.value
                 }
+
+                is CacheStrategy -> {
+                    cacheStrategy = annotation.value
+                }
                 else -> {
                     throw IllegalStateException(
                         String.format(
@@ -220,6 +227,7 @@ class MethodParser(private val baseUrl: String, method: Method) {
         hiRequest.relativeUrl = relativeUrl
         hiRequest.returnType = returnType
         hiRequest.formPost = formPost
+        hiRequest.cacheStrategy = cacheStrategy
         return hiRequest
     }
 

@@ -1,6 +1,5 @@
 package com.zj.hi_library.restful
 
-import java.lang.reflect.InvocationHandler
 import java.lang.reflect.Method
 import java.lang.reflect.Proxy
 import java.util.concurrent.ConcurrentHashMap
@@ -12,11 +11,7 @@ open class HiRestful constructor(
 
     private var interceptors: MutableList<HiInterceptor> = mutableListOf()
     private var methodParsers: ConcurrentHashMap<Method, MethodParser> = ConcurrentHashMap()
-    private var scheduler: Scheduler
-
-    init {
-        scheduler = Scheduler(callFactory, interceptors)
-    }
+    private var scheduler: Scheduler = Scheduler(callFactory, interceptors)
 
     fun addInterceptor(interceptor: HiInterceptor) {
         interceptors.add(interceptor)

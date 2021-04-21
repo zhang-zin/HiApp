@@ -1,5 +1,7 @@
 package com.zj.hiapp.http.model
 
+import java.io.Serializable
+
 data class UserModel(
     val admin: Boolean,
     val chapterTops: List<Any>,
@@ -14,4 +16,4 @@ data class UserModel(
     val token: String,
     val type: Int,
     val username: String
-)
+) : Serializable

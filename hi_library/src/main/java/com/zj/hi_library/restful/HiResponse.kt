@@ -3,8 +3,9 @@ package com.zj.hi_library.restful
 open class HiResponse<T> {
 
     companion object {
-        val RC_NEED_LOGIN = -1001
-        val SUCCESS: Int = 0
+        const val RC_NEED_LOGIN = -1001
+        const val SUCCESS: Int = 0
+        const val CACHE_SUCCESS = 304
     }
 
     var rawData: String? = null // 原始数据
