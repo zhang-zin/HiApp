@@ -8,11 +8,13 @@ import android.view.ViewGroup;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 
-public abstract class HiBaseFragment extends Fragment {
+public abstract class HiBaseFragment<T extends ViewDataBinding> extends Fragment {
 
-    protected View layoutView;
+    protected T binding;
 
     @LayoutRes
     public abstract int getLayoutId();
@@ -20,7 +22,24 @@ public abstract class HiBaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        layoutView = inflater.inflate(getLayoutId(), container, false);
-        return layoutView;
+        binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
+        View view;
+        if (binding != null) {
+            binding.executePendingBindings();
+            view = binding.getRoot();
+        } else {
+            view = inflater.inflate(getLayoutId(), container, false);
+        }
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initEvent();
+    }
+
+    protected void initEvent() {
+
     }
 }

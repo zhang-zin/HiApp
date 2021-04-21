@@ -18,7 +18,7 @@ import com.zj.hiapp.R;
 import com.zj.hiapp.fragment.category.CategoryFragment;
 import com.zj.hiapp.fragment.FavoriteFragment;
 import com.zj.hiapp.fragment.HomePageFragment;
-import com.zj.hiapp.fragment.ProfileFragment;
+import com.zj.hiapp.fragment.account.ProfileFragment;
 import com.zj.hiapp.fragment.RecommendFragment;
 
 import java.util.ArrayList;

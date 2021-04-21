@@ -1,22 +1,25 @@
 package com.zj.hiapp.biz
 
 import android.content.Intent
+import android.media.AudioManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.zj.common.ui.component.HiBaseActivity
 import com.zj.common.util.Toast
 import com.zj.hi_library.restful.HiCallback
 import com.zj.hi_library.restful.HiResponse
 import com.zj.hiapp.R
 import com.zj.hiapp.databinding.ActivityLoginBinding
+import com.zj.hiapp.fragment.account.AccountManager
 import com.zj.hiapp.http.ApiFactory
 import com.zj.hiapp.http.api.AccountApi
 import com.zj.hiapp.http.model.UserModel
 
 @Route(path = "/account/login")
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : HiBaseActivity() {
     private val REQUEST_CODE_REGISTRATION = 1000
     private lateinit var loginBinding: ActivityLoginBinding
 
@@ -42,6 +45,10 @@ class LoginActivity : AppCompatActivity() {
         loginBinding.toolbarActionBack.setOnClickListener {
             onBackPressed()
         }
+
+        AccountManager.observeRegister(this, { userName ->
+            loginBinding.inputUserName.getEditText().setText(userName)
+        })
     }
 
     private fun login() {
@@ -53,27 +60,6 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        ApiFactory.create(AccountApi::class.java).login(userName, userPwd)
-            .enqueue(object : HiCallback<UserModel> {
-                override fun onSuccess(response: HiResponse<UserModel>) {
-                    if (response.code == HiResponse.SUCCESS) {
-                        "登录成功".Toast()
-                    } else {
-                        "登录失败".Toast()
-                    }
-                }
-
-                override fun onFailed(throwable: Throwable) {
-                    "登录失败".Toast()
-                }
-            })
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK && data != null) {
-            loginBinding.inputUserName.getEditText()
-                .setText(data.getStringExtra("register_success_user_name") ?: "")
-        }
+        AccountManager.login(this, userName, userPwd)
     }
 }

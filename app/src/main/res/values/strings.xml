@@ -72,5 +72,6 @@
     <string name="title_category">分类</string>
 
     <string name="home_search_hint">&#xe987;  搜索你想要的商品</string>
+    <string name="login_fail">登录失败</string>
 
 </resources>
