@@ -1,5 +1,7 @@
 package com.zj.hiapp.http.model
 
+import java.io.Serializable
+
 data class CoinInfoModel(
     val coinCount: Int,
     val level: Int,
@@ -7,4 +9,4 @@ data class CoinInfoModel(
     val rank: String,
     val userId: Int,
     val username: String
-)
+) : Serializable

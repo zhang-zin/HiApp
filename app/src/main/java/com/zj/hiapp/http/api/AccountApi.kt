@@ -1,6 +1,7 @@
 package com.zj.hiapp.http.api
 
 import com.zj.hi_library.restful.HiCall
+import com.zj.hi_library.restful.annotation.CacheStrategy
 import com.zj.hi_library.restful.annotation.Filed
 import com.zj.hi_library.restful.annotation.GET
 import com.zj.hi_library.restful.annotation.POST
@@ -25,6 +26,7 @@ interface AccountApi {
     @GET("user/logout/json")
     fun logout(): HiCall<String>
 
+    @CacheStrategy(CacheStrategy.CACHE_FIRST)
     @GET("lg/coin/userinfo/json")
     fun getCoinInfo(): HiCall<CoinInfoModel>
 

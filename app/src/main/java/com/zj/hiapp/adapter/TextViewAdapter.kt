@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.zj.hiapp.R
 
-@BindingAdapter(value = ["topText", "bottomText"], requireAll = true)
+@BindingAdapter(value = ["topText", "bottomText"])
 fun spannableTabItem(textView: TextView, topText: Int, bottomText: String) {
     val spanStr = topText.toString()
     val ssb = SpannableStringBuilder()
@@ -37,3 +37,42 @@ fun spannableTabItem(textView: TextView, topText: Int, bottomText: String) {
     textView.text = ssb
 }
 
+@BindingAdapter(value = ["leftText", "rightText"])
+fun spanProfileItem(textView: TextView, leftText: String, rightText: String) {
+    val spannableStringBuilder = SpannableStringBuilder()
+    val spanFlag = Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+    val leftSpannable = SpannableString(leftText)
+    leftSpannable.setSpan(
+        ForegroundColorSpan(ContextCompat.getColor(textView.context, R.color.colorPrimary)),
+        0,
+        leftSpannable.length,
+        spanFlag
+    )
+
+    leftSpannable.setSpan(
+        AbsoluteSizeSpan(18, true),
+        0,
+        leftSpannable.length,
+        spanFlag
+    )
+
+    val rightSpannable = SpannableString(rightText)
+
+    rightSpannable.setSpan(
+        ForegroundColorSpan(ContextCompat.getColor(textView.context, R.color.color_000)),
+        0,
+        leftSpannable.length,
+        spanFlag
+    )
+    rightSpannable.setSpan(
+        AbsoluteSizeSpan(16, true),
+        0,
+        leftSpannable.length,
+        spanFlag
+    )
+
+    spannableStringBuilder.append(leftSpannable)
+    spannableStringBuilder.append(" ")
+    spannableStringBuilder.append(rightSpannable)
+    textView.text = spannableStringBuilder
+}

@@ -42,4 +42,5 @@ public abstract class HiBaseFragment<T extends ViewDataBinding> extends Fragment
     protected void initEvent() {
 
     }
+
 }

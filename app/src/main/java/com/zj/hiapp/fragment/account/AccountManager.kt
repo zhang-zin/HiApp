@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import com.zj.common.util.Toast
 import com.zj.hi_library.cache.HiStorage
 import com.zj.hi_library.executor.HiExecutor
+import com.zj.hi_library.hiLog.HiLog
 import com.zj.hi_library.restful.HiCallback
 import com.zj.hi_library.restful.HiResponse
 import com.zj.hiapp.R
@@ -82,11 +83,13 @@ object AccountManager {
     }
 
     fun getCoinInfo(lifecycleOwner: LifecycleOwner, observer: Observer<CoinInfoModel>) {
+        HiLog.e("start getCoinInfo")
         coinInfoModel.observe(lifecycleOwner, observer)
         accountApi.getCoinInfo()
             .enqueue(object : HiCallback<CoinInfoModel> {
                 override fun onSuccess(response: HiResponse<CoinInfoModel>) {
                     coinInfoModel.value = response.data
+                    HiLog.e("end getCoinInfo")
                 }
 
                 override fun onFailed(throwable: Throwable) {

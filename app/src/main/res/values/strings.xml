@@ -60,11 +60,11 @@
     <string name="action_register_fail">注册失败</string>
     <string name="profile_page_need_login_tips">登录解锁更多功能</string>
 
-    <string name="item_notify">&#xe654;  课程通知</string>
-    <string name="item_share">&#xe60d;   我的分享</string>
-    <string name="item_collection">&#xe604;   我的收藏</string>
-    <string name="item_history">&#xe606;   阅读历史</string>
-    <string name="item_setting">&#xe60f;   系统设置</string>
+    <string name="item_notify">课程通知</string>
+    <string name="item_share">我的分享</string>
+    <string name="item_collection">我的收藏</string>
+    <string name="item_history">阅读历史</string>
+    <string name="item_setting">系统设置</string>
     <string name="collection_count">\n等级</string>
     <string name="history_count">0\n历史浏览</string>
     <string name="integral_count">20\n积分</string>
@@ -73,7 +73,7 @@
     <string name="grade">等级</string>
     <string name="rank">排名</string>
     <string name="integral">积分</string>
-    <string name="home_search_hint">&#xe987;  搜索你想要的商品</string>
+    <string name="home_search_hint">&#xe987;  搜索你想要的文章</string>
     <string name="login_fail">登录失败</string>
 
 </resources>

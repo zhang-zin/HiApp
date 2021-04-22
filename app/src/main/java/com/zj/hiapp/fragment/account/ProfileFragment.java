@@ -27,9 +27,9 @@ public class ProfileFragment extends HiBaseFragment<FragmentProfilePageBinding> 
 
         AccountManager.INSTANCE.observeLogin(this, userModel -> {
             if (userModel != null) {
+                binding.setUser(userModel);
                 AccountManager.INSTANCE.getCoinInfo(this, coinInfoModel -> {
                     if (coinInfoModel != null) {
-                        binding.setUser(userModel);
                         binding.setCoinInfo(coinInfoModel);
                     }
                 });

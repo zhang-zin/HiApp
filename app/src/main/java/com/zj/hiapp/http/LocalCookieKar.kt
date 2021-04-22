@@ -2,6 +2,8 @@ package com.zj.hiapp.http
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.zj.common.SP_KEY_COOLIE
+import com.zj.common.util.SpUtil
 import com.zj.hi_library.hiLog.HiLog
 import okhttp3.Cookie
 import okhttp3.CookieJar
@@ -13,6 +15,18 @@ internal class LocalCookieKar : CookieJar {
      * 本地cookies持久化存储
      */
     private val cookies = mutableListOf<Cookie>()
+    private val gson = Gson()
+
+    init {
+        val cookiesJson = SpUtil.getString(SP_KEY_COOLIE)
+        val cacheCookie = gson.fromJson<MutableList<Cookie>>(
+            cookiesJson,
+            object : TypeToken<MutableList<Cookie>>() {}.type
+        )
+        if (!cacheCookie.isNullOrEmpty()) {
+            cookies.addAll(cacheCookie)
+        }
+    }
 
     override fun loadForRequest(url: HttpUrl): List<Cookie> {
         // 过期cookies
@@ -38,12 +52,8 @@ internal class LocalCookieKar : CookieJar {
      */
     override fun saveFromResponse(url: HttpUrl, cookies: List<Cookie>) {
         this.cookies.addAll(cookies)
-        /*response.errorData = gson.fromJson<MutableMap<String, String>>(
-            data.toString(),
-            object : TypeToken<MutableMap<String, String>>() {}.type
-        )*/
-        val gson = Gson()
-        val toJson = gson.toJson(cookies)
-        HiLog.e(toJson)
+        val cookiesJson = gson.toJson(cookies)
+        HiLog.e(cookiesJson)
+        SpUtil.putString(SP_KEY_COOLIE, cookiesJson)
     }
 }
