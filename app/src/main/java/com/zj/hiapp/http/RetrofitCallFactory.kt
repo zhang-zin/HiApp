@@ -1,17 +1,16 @@
 package com.zj.hiapp.http
 
 import com.zj.hi_library.restful.*
-import okhttp3.FormBody
-import okhttp3.MediaType
-import okhttp3.RequestBody
-import okhttp3.ResponseBody
+import okhttp3.*
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.*
+import java.io.File
 import java.lang.IllegalStateException
+import java.util.concurrent.TimeUnit
 
 class RetrofitCallFactory(baseUrl: String) : HiCall.Factory {
 
@@ -19,7 +18,16 @@ class RetrofitCallFactory(baseUrl: String) : HiCall.Factory {
     private var apiService: ApiService
 
     init {
+        val mClient = OkHttpClient.Builder()
+            .callTimeout(10, TimeUnit.SECONDS) //完整的请求超时时长，从发起请求到接收返回数据
+            .connectTimeout(10, TimeUnit.SECONDS) //与服务器建立连接时长
+            .readTimeout(10, TimeUnit.SECONDS) //读取服务器返回数据的时长
+            .writeTimeout(10, TimeUnit.SECONDS) //向服务器写入数据的时长
+            .cache(Cache(File("data/user/0/com.zj.hiapp/cache", "okHttp"), 1024))
+            .cookieJar(LocalCookieKar())
+            .build()
         val retrofit = Retrofit.Builder()
+            .client(mClient)
             .baseUrl(baseUrl)
             .build()
         apiService = retrofit.create(ApiService::class.java)

@@ -4,6 +4,7 @@ import com.zj.hi_library.restful.HiCall
 import com.zj.hi_library.restful.annotation.Filed
 import com.zj.hi_library.restful.annotation.GET
 import com.zj.hi_library.restful.annotation.POST
+import com.zj.hiapp.http.model.CoinInfoModel
 import com.zj.hiapp.http.model.UserModel
 
 interface AccountApi {
@@ -23,4 +24,8 @@ interface AccountApi {
 
     @GET("user/logout/json")
     fun logout(): HiCall<String>
+
+    @GET("lg/coin/userinfo/json")
+    fun getCoinInfo(): HiCall<CoinInfoModel>
+
 }

@@ -5,9 +5,15 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="user"
             type="com.zj.hiapp.http.model.UserModel" />
+
+        <variable
+            name="coinInfo"
+            type="com.zj.hiapp.http.model.CoinInfoModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,37 +59,47 @@
 
         <TextView
             android:id="@+id/tv_item_collection"
+            bottomText="@{@string/grade}"
+            topText="@{coinInfo.level}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="@string/collection_count"
+            android:visibility="@{coinInfo==null ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toStartOf="@+id/tv_item_history"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_avatar" />
+            app:layout_constraintTop_toBottomOf="@+id/user_avatar"
+            tools:text="@string/grade" />
 
         <TextView
             android:id="@+id/tv_item_history"
+            bottomText="@{@string/rank}"
+            topText="@{Integer.valueOf(coinInfo.rank??&quot;0&quot;)}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/history_count"
+            android:visibility="@{coinInfo==null ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_item_collection"
             app:layout_constraintEnd_toStartOf="@+id/tv_item_integral"
             app:layout_constraintStart_toEndOf="@+id/tv_item_collection"
-            app:layout_constraintTop_toTopOf="@+id/tv_item_collection" />
+            app:layout_constraintTop_toTopOf="@+id/tv_item_collection"
+            tools:text="@string/rank" />
 
         <TextView
             android:id="@+id/tv_item_integral"
+            bottomText="@{@string/integral}"
+            topText="@{coinInfo.coinCount}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/integral_count"
+            android:visibility="@{coinInfo==null ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_item_history"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_item_history"
-            app:layout_constraintTop_toTopOf="@+id/tv_item_history" />
+            app:layout_constraintTop_toTopOf="@+id/tv_item_history"
+            tools:text="@string/integral" />
 
         <View
             android:id="@+id/view"

@@ -5,25 +5,41 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.zj.common.util.Toast
+import com.zj.hi_library.cache.HiStorage
+import com.zj.hi_library.executor.HiExecutor
 import com.zj.hi_library.restful.HiCallback
 import com.zj.hi_library.restful.HiResponse
 import com.zj.hiapp.R
 import com.zj.hiapp.http.ApiFactory
 import com.zj.hiapp.http.api.AccountApi
+import com.zj.hiapp.http.model.CoinInfoModel
 import com.zj.hiapp.http.model.UserModel
 
 object AccountManager {
 
+    private var accountApi: AccountApi = ApiFactory.create(AccountApi::class.java)
     private val userModel = MutableLiveData<UserModel>()
     private val registerLiveData = MutableLiveData<String>()
+    private val coinInfoModel = MutableLiveData<CoinInfoModel>()
+    private val SAVE_USER_INFO_KEY = "save_user_info_key"
+
+    init {
+        HiExecutor.execute(runnable = {
+            val userCache = HiStorage.getCache<UserModel>(SAVE_USER_INFO_KEY)
+            userModel.postValue(userCache)
+        })
+    }
 
     fun login(activity: Activity, userName: String, userPwd: String) {
-        ApiFactory.create(AccountApi::class.java).login(userName, userPwd)
+        accountApi.login(userName, userPwd)
             .enqueue(object : HiCallback<UserModel> {
                 override fun onSuccess(response: HiResponse<UserModel>) {
                     if (response.code == HiResponse.SUCCESS) {
                         userModel.value = response.data
                         activity.finish()
+                        HiExecutor.execute(runnable = {
+                            HiStorage.saveCache(SAVE_USER_INFO_KEY, response.data)
+                        })
                     } else {
                         activity.getString(R.string.login_fail).Toast()
                     }
@@ -51,8 +67,7 @@ object AccountManager {
             activity.getString(R.string.again_input_pwd_errro).Toast()
             return
         }
-        ApiFactory.create(AccountApi::class.java)
-            .register(userName, userPwd, userPwdAgain)
+        accountApi.register(userName, userPwd, userPwdAgain)
             .enqueue(object : HiCallback<UserModel> {
                 override fun onSuccess(response: HiResponse<UserModel>) {
                     registerLiveData.value = userName
@@ -61,6 +76,21 @@ object AccountManager {
 
                 override fun onFailed(throwable: Throwable) {
                     activity.getString(R.string.action_register_fail).Toast()
+                }
+
+            })
+    }
+
+    fun getCoinInfo(lifecycleOwner: LifecycleOwner, observer: Observer<CoinInfoModel>) {
+        coinInfoModel.observe(lifecycleOwner, observer)
+        accountApi.getCoinInfo()
+            .enqueue(object : HiCallback<CoinInfoModel> {
+                override fun onSuccess(response: HiResponse<CoinInfoModel>) {
+                    coinInfoModel.value = response.data
+                }
+
+                override fun onFailed(throwable: Throwable) {
+                    coinInfoModel.value = null
                 }
 
             })
