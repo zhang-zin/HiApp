@@ -1,60 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zj.hi_ui.ui.tab.bottom.HiTabBottomLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tab_bottom_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <RelativeLayout
+    <com.zj.common.tab.HiFragmentTabView
+        android:id="@+id/hi_tab_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/item_height"
-        android:background="@color/main">
+        android:layout_height="match_parent" />
 
-        <com.zj.common.ui.view.IconFontTextView
-            android:id="@+id/toolbar_action_back"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:paddingStart="@dimen/start_value"
-            android:paddingEnd="@dimen/start_value"
-            android:text="@string/if_back"
-            android:textColor="@color/foreground"
-            android:textSize="@dimen/action_back_text_size" />
-
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:text="@string/action_login"
-            android:textColor="@color/color_white"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/toolbar_action_right"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:gravity="center"
-            android:paddingStart="@dimen/start_value"
-            android:paddingEnd="@dimen/start_value"
-            android:text="@string/action_registered"
-            android:textColor="@color/color_white"
-            android:textSize="16sp" />
-
-    </RelativeLayout>
-
-    <com.zj.hi_ui.ui.tab.bottom.HiTabBottomLayout
-        android:id="@+id/tab_bottom_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.zj.common.tab.HiFragmentTabView
-            android:id="@+id/hi_tab_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </com.zj.hi_ui.ui.tab.bottom.HiTabBottomLayout>
-</LinearLayout>
+</com.zj.hi_ui.ui.tab.bottom.HiTabBottomLayout>
