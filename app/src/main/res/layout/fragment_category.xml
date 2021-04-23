@@ -14,6 +14,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="@string/title_category"
+        android:background="@color/colorPrimary"
         android:textColor="@color/color_000"
         android:textSize="@dimen/item_text_size"
         app:layout_constraintEnd_toEndOf="parent"

@@ -40,7 +40,6 @@ public class HiTabBottomLayout extends FrameLayout implements IHiTabLayout<HiTab
 
     private static final String TAG_TAB_BOTTOM = "TAG_TAB_BOTTOM";
 
-
     public HiTabBottomLayout(@NonNull Context context) {
         this(context, null);
     }

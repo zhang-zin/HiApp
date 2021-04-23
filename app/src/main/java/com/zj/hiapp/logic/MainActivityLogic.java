@@ -45,7 +45,7 @@ public class MainActivityLogic {
 
     private void initTabBottom() {
         hiTabBottomLayout = activityProvider.findViewById(R.id.tab_bottom_layout);
-        hiTabBottomLayout.setAlpha(0.85f);
+        //hiTabBottomLayout.setAlpha(0.85f);
 
         initTabLayoutData();
 

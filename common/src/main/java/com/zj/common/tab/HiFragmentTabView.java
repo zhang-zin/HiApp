@@ -28,10 +28,6 @@ public class HiFragmentTabView extends FrameLayout {
         super(context, attrs, defStyleAttr);
     }
 
-    public HiTabViewAdapter getAdapter() {
-        return mAdapter;
-    }
-
     public void setAdapter(HiTabViewAdapter adapter) {
         if (adapter == null || mAdapter != null) {
             return;
@@ -50,6 +46,10 @@ public class HiFragmentTabView extends FrameLayout {
             mCurrentPosition = position;
             mAdapter.instantiateItem(this, position);
         }
+    }
+
+    public HiTabViewAdapter getAdapter() {
+        return mAdapter;
     }
 
     public int getCurrentPosition() {
