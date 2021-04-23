@@ -1,23 +1,18 @@
 package com.zj.hiapp.fragment.category;
 
-import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.zj.common.ui.component.HiBaseFragment;
 import com.zj.hi_library.hiLog.HiLog;
 import com.zj.hi_library.restful.HiCallback;
 import com.zj.hi_library.restful.HiResponse;
-import com.zj.hi_ui.ui.slide.HiSliderView;
 import com.zj.hi_ui.ui.tab.bottom.HiTabBottomLayout;
 import com.zj.hiapp.R;
+import com.zj.hiapp.databinding.FragmentCategoryBinding;
 import com.zj.hiapp.http.ApiFactory;
 import com.zj.hiapp.http.api.CategoryApi;
 import com.zj.hiapp.http.model.CategoryModel;
@@ -31,12 +26,11 @@ import java.util.List;
 import java.util.Map;
 
 import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
 
-public class CategoryFragment extends HiBaseFragment {
+public class CategoryFragment extends HiBaseFragment<FragmentCategoryBinding> {
 
     private CategoryApi categoryApi;
-    private HiSliderView hiSliderView;
+    private final Map<Integer, String> parentChapterMap = new HashMap<>();
 
     @Override
     public int getLayoutId() {
@@ -44,14 +38,14 @@ public class CategoryFragment extends HiBaseFragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        ViewGroup root_container = view.findViewById(R.id.root_container);
-        HiTabBottomLayout.clipBottomPadding(root_container);
-
-        hiSliderView = view.findViewById(R.id.slider_view);
-
+    protected void init() {
         categoryApi = ApiFactory.INSTANCE.create(CategoryApi.class);
+        HiTabBottomLayout.clipBottomPadding(binding.rootContainer);
         queryCategoryList();
+    }
+
+    @Override
+    protected void initEvent() {
     }
 
     private void queryCategoryList() {
@@ -69,8 +63,6 @@ public class CategoryFragment extends HiBaseFragment {
 
     }
 
-    private Map<Integer, String> parentChapterMap = new HashMap<>();
-
     private void bindSlierMenu(List<CategoryModel> data) {
         if (data == null || data.size() <= 0) {
             return;
@@ -84,7 +76,7 @@ public class CategoryFragment extends HiBaseFragment {
         }
 
         bindSlierContent(childrenList);
-        hiSliderView.setMenuViewVisibility(false);
+        binding.sliderView.setMenuViewVisibility(false);
 
         /*hiSliderView.bindMenuView(R.layout.hi_slider_menu_item, data.size(), (hiViewHolder, integer) -> {
             CategoryModel categoryModel = data.get(integer);
@@ -110,7 +102,7 @@ public class CategoryFragment extends HiBaseFragment {
         }, 3);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(requireContext(), 3);
         gridLayoutManager.setSpanSizeLookup(new CategorySpanSizeLookup(childrenList, 3));
-        hiSliderView.bindContentView(R.layout.hi_slider_content_item,
+        binding.sliderView.bindContentView(R.layout.hi_slider_content_item,
                 childrenList.size(),
                 categoryItemDecoration,
                 gridLayoutManager,

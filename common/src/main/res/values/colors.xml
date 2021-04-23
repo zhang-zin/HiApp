@@ -54,7 +54,6 @@
     <color name="foreground_alpha">#ccffffff</color>
     <color name="foreground_mask">#ccffffff</color>
     <color name="foreground_top">#f5f5f5</color>
-    <color name="surface">#ffffff</color>
     <color name="surface_alpha">#ccffffff</color>
     <color name="surface_mask">#ccffffff</color>
     <color name="surface_top">#f5f5f5</color>

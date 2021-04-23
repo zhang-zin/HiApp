@@ -1,22 +1,14 @@
-package com.zj.hiapp.biz
+package com.zj.hiapp.biz.account
 
-import android.content.Intent
-import android.media.AudioManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.zj.common.ui.component.HiBaseActivity
 import com.zj.common.util.Toast
-import com.zj.hi_library.restful.HiCallback
-import com.zj.hi_library.restful.HiResponse
 import com.zj.hiapp.R
 import com.zj.hiapp.databinding.ActivityLoginBinding
 import com.zj.hiapp.fragment.account.AccountManager
-import com.zj.hiapp.http.ApiFactory
-import com.zj.hiapp.http.api.AccountApi
-import com.zj.hiapp.http.model.UserModel
 
 @Route(path = "/account/login")
 class LoginActivity : HiBaseActivity() {

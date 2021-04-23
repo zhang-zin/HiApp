@@ -61,13 +61,13 @@ fun spanProfileItem(textView: TextView, leftText: String, rightText: String) {
     rightSpannable.setSpan(
         ForegroundColorSpan(ContextCompat.getColor(textView.context, R.color.color_000)),
         0,
-        leftSpannable.length,
+        rightSpannable.length,
         spanFlag
     )
     rightSpannable.setSpan(
         AbsoluteSizeSpan(16, true),
         0,
-        leftSpannable.length,
+        rightSpannable.length,
         spanFlag
     )
 

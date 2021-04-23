@@ -36,7 +36,11 @@ public abstract class HiBaseFragment<T extends ViewDataBinding> extends Fragment
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        init();
         initEvent();
+    }
+
+    protected void init() {
     }
 
     protected void initEvent() {

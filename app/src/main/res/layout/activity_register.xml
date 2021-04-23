@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".biz.RegisterActivity">
+        tools:context=".biz.account.RegisterActivity">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -29,6 +29,7 @@
                 android:paddingStart="@dimen/start_value"
                 android:paddingEnd="@dimen/start_value"
                 android:text="@string/if_back"
+                android:textColor="@color/foreground"
                 android:textSize="@dimen/action_back_text_size" />
 
             <TextView
