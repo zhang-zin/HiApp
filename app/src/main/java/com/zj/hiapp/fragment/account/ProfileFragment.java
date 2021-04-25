@@ -1,5 +1,8 @@
 package com.zj.hiapp.fragment.account;
 
+import android.os.Bundle;
+import android.view.View;
+
 import com.zj.common.ui.component.HiBaseFragment;
 import com.zj.hiapp.R;
 import com.zj.hiapp.databinding.FragmentProfilePageBinding;
@@ -34,6 +37,12 @@ public class ProfileFragment extends HiBaseFragment<FragmentProfilePageBinding> 
                     }
                 });
             }
+        });
+
+        binding.itemCollection.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("goodsSign", "Y9z2luxNyt1Uv1IxwfDZeoUikQeR7J48_JQ9SyNG6Fj");
+            HiRoute.INSTANCE.startActivity(requireContext(), bundle, HiRoute.Destination.DETAIL_MAIN, 0);
         });
     }
 

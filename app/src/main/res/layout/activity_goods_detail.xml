@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".biz.detail.GoodsDetailActivity">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/good_detail_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toTopOf="@+id/like"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:fitsSystemWindows="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.zj.common.ui.view.IconFontTextView
+                android:id="@+id/action_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingStart="12dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="5dp"
+                android:text="@string/if_back"
+                android:textSize="18sp" />
+
+            <com.zj.common.ui.view.IconFontTextView
+                android:id="@+id/action_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:gravity="center"
+                android:paddingStart="12dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="5dp"
+                android:text="@string/if_share"
+                android:textSize="18sp" />
+
+        </FrameLayout>
+
+        <com.zj.common.ui.view.IconFontTextView
+            android:id="@+id/like"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@color/color_f1"
+            android:gravity="center"
+            android:text="&#xe60e;\n收藏"
+            android:textColor="@color/color_dd2"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buy_now"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.zj.common.ui.view.IconFontTextView
+            android:id="@+id/buy_now"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@color/color_dd2"
+            android:gravity="center"
+            android:textColor="@color/color_white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/like"
+            tools:text="50\n立即购买" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

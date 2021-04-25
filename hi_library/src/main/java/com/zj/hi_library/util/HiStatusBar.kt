@@ -9,11 +9,9 @@ import android.view.WindowManager
 object HiStatusBar {
 
     /**
-     *darkContent true:意味着 白底黑字， false:黑底白字
-     *
-     * statusBarColor  状态栏的背景色
-     *
-     * translucent  沉浸式效果，也就是页面的布局延伸到状态栏之下
+     * [darkContent] true:意味着 白底黑字， false:黑底白字
+     * [statusBarColor] 状态栏的背景色
+     * [translucent] 沉浸式效果，也就是页面的布局延伸到状态栏之下
      */
     fun setStatusBar(
         activity: Activity,
@@ -21,7 +19,6 @@ object HiStatusBar {
         statusBarColor: Int = Color.WHITE,
         translucent: Boolean
     ) {
-
 
         val window = activity.window
         val decorView = window.decorView

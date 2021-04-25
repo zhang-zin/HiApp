@@ -13,36 +13,15 @@
         android:orientation="vertical"
         tools:context=".biz.account.RegisterActivity">
 
-        <RelativeLayout
+        <com.zj.common.ui.view.TitleBar
+            android:id="@+id/titleBar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/item_height"
-            android:background="@color/main"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.zj.common.ui.view.IconFontTextView
-                android:id="@+id/toolbar_action_back"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:paddingStart="@dimen/start_value"
-                android:paddingEnd="@dimen/start_value"
-                android:text="@string/if_back"
-                android:textColor="@color/foreground"
-                android:textSize="@dimen/action_back_text_size" />
-
-            <TextView
-                android:id="@+id/toolbar_title"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:text="@string/action_registered"
-                android:textColor="@color/color_white"
-                android:textSize="16sp" />
-
-        </RelativeLayout>
+            android:background="@color/colorPrimary"
+            app:rightVisibility="false"
+            app:textColor="@color/color_white"
+            app:titleBackIcon="@string/if_back"
+            app:toolbarTitle="@string/action_registered" />
 
         <com.zj.common.ui.view.InputItemLayout
             android:id="@+id/input_user_name"

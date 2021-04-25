@@ -5,6 +5,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
@@ -18,12 +19,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class HiTabTopLayout extends HorizontalScrollView implements IHiTabLayout<HiTabTop, HiTabTopInfo<?>> {
+public class HiTabTopLayout extends HorizontalScrollView implements IHiTabLayout<HiTabTop, HiTabTopInfo<?>>, ViewTreeObserver.OnGlobalLayoutListener {
 
     private List<OnTabSelectedListener<HiTabTopInfo<?>>> tabSelectedChangeListeners = new ArrayList<>();
     private HiTabTopInfo<?> selectedInfo;
     private List<HiTabTopInfo<?>> infoList;
-
+    private boolean isDefaultSelected;
 
     public HiTabTopLayout(@NonNull Context context) {
         this(context, null);
@@ -61,6 +62,8 @@ public class HiTabTopLayout extends HorizontalScrollView implements IHiTabLayout
     @Override
     public void defaultSelected(@NonNull HiTabTopInfo<?> defaultInfo) {
         onSelected(defaultInfo);
+        getViewTreeObserver().addOnGlobalLayoutListener(this);
+        isDefaultSelected = true;
     }
 
     @Override
@@ -93,6 +96,11 @@ public class HiTabTopLayout extends HorizontalScrollView implements IHiTabLayout
             hiTabTop.setOnClickListener(v -> onSelected(info));
         }
 
+    }
+
+    @Override
+    public void onGlobalLayout() {
+        autoScroll(selectedInfo);
     }
 
     private LinearLayout getRootLayout(boolean clear) {
@@ -133,13 +141,27 @@ public class HiTabTopLayout extends HorizontalScrollView implements IHiTabLayout
         int[] loc = new int[2];
         //获取点击控件在屏幕的坐标
         tab.getLocationInWindow(loc);
+        int displayWidthInPx = HiDisplayUtil.getDisplayWidthInPx(getContext());
+
+        if (loc[0] == 0 && tabWith == 0) {
+            return;
+        } else if (isDefaultSelected) {
+            isDefaultSelected = false;
+            getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            scrollTo(loc[0] + getScrollX(), 0);
+            tab.getLocationInWindow(loc);
+            if (loc[0] == 0) {
+                // 滑动到屏幕中间
+                scrollTo(getScrollX() - displayWidthInPx / 2 + tab.getWidth() / 2, 0);
+            }
+            return;
+        }
 
         if (tabWith == 0) {
             tabWith = tab.getWidth();
         }
 
         //获取屏幕宽度
-        int displayWidthInPx = HiDisplayUtil.getDisplayWidthInPx(getContext());
         int scrollWidth; //tabTopLayout滚动距离
         //判断点击了是屏幕的左侧还是右侧
         if (loc[0] + tabWith / 2 > displayWidthInPx / 2) {

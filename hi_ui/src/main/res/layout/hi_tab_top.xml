@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"
         android:textColor="@android:color/black"
-        android:textSize="17dp"
+        android:textSize="14sp"
         android:visibility="gone"
         tools:text="福州"
         tools:visibility="visible" />

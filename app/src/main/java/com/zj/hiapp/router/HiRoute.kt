@@ -24,9 +24,10 @@ object HiRoute {
         GOODS_LIST("商品列表", "/goods/list"),
         ACCOUNT_REGISTRATION("注册", "/account/registration"),
         ACCOUNT_LOGIN("登陆", "/account/login"),
-        DEGRADE_GLOBAL("全局降级页", "/degrade/global/activity")
-        //登录
-        //注册
+        ACCOUNT_REGISTER("登陆", "/account/register"),
+        DEGRADE_GLOBAL("全局降级页", "/degrade/global/activity"),
+        DETAIL_MAIN("商品详情也", "/detail/main"),
+        DETAIL_CATEGORY("二级分类页面", "/detail/category")
     }
 
     fun startActivity(

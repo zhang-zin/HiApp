@@ -1,5 +1,7 @@
 package com.zj.hiapp.http.model
 
+import androidx.versionedparcelable.ParcelField
+import androidx.versionedparcelable.VersionedParcelize
 import java.io.Serializable
 
 /**
@@ -29,7 +31,7 @@ import java.io.Serializable
     "visible":1
 }*/
 data class CategoryModel(
-    val children: List<ChildCategory>,
+    val children: ArrayList<ChildCategory>,
     val courseId: Int,
     val id: Int,
     val name: String,

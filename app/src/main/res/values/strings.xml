@@ -70,6 +70,7 @@
     <string name="integral_count">20\n积分</string>
     <string name="need_login_tips">请先登录</string>
     <string name="title_category">分类</string>
+    <string name="title_home">首页</string>
     <string name="grade">等级</string>
     <string name="rank">排名</string>
     <string name="integral">积分</string>

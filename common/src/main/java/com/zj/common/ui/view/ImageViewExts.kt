@@ -11,8 +11,9 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
-fun ImageView.loadUrl(url: String) {
-    Glide.with(context).load(url).into(this)
+fun ImageView.loadUrl(url: String?) {
+    if (!url.isNullOrEmpty())
+        Glide.with(context).load(url).into(this)
 }
 
 fun ImageView.loadCircle(url: String) {

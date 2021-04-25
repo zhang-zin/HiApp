@@ -12,32 +12,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <com.zj.common.ui.view.TitleBar
             android:id="@+id/title"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/item_height"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/title_category"
-            android:textColor="@color/color_000"
-            android:textSize="@dimen/item_text_size"
+            android:layout_height="46dp"
+            android:background="@color/colorPrimary"
+            app:backVisibility="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:rightVisibility="false"
+            app:toolbarTitle="@string/title_category" />
 
         <com.zj.common.ui.view.IconFontTextView
             android:id="@+id/search_container"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_below="@+id/title"
             android:background="@drawable/shape_home_search"
             android:gravity="center"
             android:text="@string/home_search_hint"
             android:textColor="@color/color_9fa"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <View

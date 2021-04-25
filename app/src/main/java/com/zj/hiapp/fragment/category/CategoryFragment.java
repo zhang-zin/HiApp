@@ -1,11 +1,12 @@
 package com.zj.hiapp.fragment.category;
 
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.zj.common.ui.component.HiBaseFragment;
 import com.zj.hi_library.hiLog.HiLog;
 import com.zj.hi_library.restful.HiCallback;
@@ -17,6 +18,7 @@ import com.zj.hiapp.http.ApiFactory;
 import com.zj.hiapp.http.api.CategoryApi;
 import com.zj.hiapp.http.model.CategoryModel;
 import com.zj.hiapp.http.model.ChildCategory;
+import com.zj.hiapp.router.HiRoute;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -31,6 +33,7 @@ public class CategoryFragment extends HiBaseFragment<FragmentCategoryBinding> {
 
     private CategoryApi categoryApi;
     private final Map<Integer, String> parentChapterMap = new HashMap<>();
+    private final Map<Integer, ArrayList<ChildCategory>> childCategoryMap = new HashMap<>();
 
     @Override
     public int getLayoutId() {
@@ -72,6 +75,7 @@ public class CategoryFragment extends HiBaseFragment<FragmentCategoryBinding> {
             if (data.size() > 0) {
                 childrenList.addAll(datum.component1());
                 parentChapterMap.put(datum.getId(), datum.getName());
+                childCategoryMap.put(datum.getId(), datum.getChildren());
             }
         }
 
@@ -117,7 +121,15 @@ public class CategoryFragment extends HiBaseFragment<FragmentCategoryBinding> {
                 },
                 (hiViewHolder, integer) -> {
                     ChildCategory children = childrenList.get(integer);
-                    Toast.makeText(requireContext(), children.getName(), Toast.LENGTH_SHORT).show();
+                    ArrayList<ChildCategory> childCategories = childCategoryMap.get(children.getParentChapterId());
+                    int indexOf = childCategories.indexOf(children);
+                    ARouter.getInstance()
+                            .build(HiRoute.Destination.DETAIL_CATEGORY.getPath())
+                            .withInt("selectPosition", indexOf)
+                            .withString("categoryTitle", parentChapterMap.get(children.getParentChapterId()))
+                            .withObject("childrenList", childCategories)
+                            .navigation();
+//                    HiRoute.INSTANCE.startActivity(requireActivity(), bundle, HiRoute.Destination.DETAIL_CATEGORY, 0);
                     return Unit.INSTANCE;
                 });
     }

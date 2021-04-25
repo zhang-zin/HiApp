@@ -2,19 +2,20 @@ package com.zj.hiapp
 
 import android.os.Bundle
 import android.view.KeyEvent
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import com.zj.common.ui.component.HiBaseActivity
 import com.zj.hiapp.logic.MainActivityLogic
 
-class MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
+class MainActivity : HiBaseActivity<ViewDataBinding>(), MainActivityLogic.ActivityProvider {
 
     lateinit var mainActivityLogic: MainActivityLogic
 
+    override fun getLayoutId() = R.layout.activity_main
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         mainActivityLogic = MainActivityLogic(this, savedInstanceState)
-
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

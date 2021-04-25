@@ -45,6 +45,9 @@ class GsonConvert : HiConvert {
             } else {
                 response.data = data as T?
             }
+            if (data==null){
+                response.data = gson.fromJson(rawData, dataType)
+            }
         } catch (e: JSONException) {
             e.printStackTrace()
             response.code = -1

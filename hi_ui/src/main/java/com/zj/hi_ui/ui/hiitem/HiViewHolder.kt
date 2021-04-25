@@ -2,12 +2,14 @@ package com.zj.hi_ui.ui.hiitem
 
 import android.util.SparseArray
 import android.view.View
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.zj.hi_ui.ui.banner.HiBanner
 
 class HiViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
-    init {
-    }
+//    var binding: T? = DataBindingUtil.bind<T>(view)
 
     private var viewCache = SparseArray<View>()
 
@@ -18,5 +20,9 @@ class HiViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
             viewCache.put(viewId, view)
         }
         return view as? T
+    }
+
+    fun <Binding : ViewDataBinding> bindingView(): Binding? {
+        return DataBindingUtil.bind<Binding>(view)
     }
 }
