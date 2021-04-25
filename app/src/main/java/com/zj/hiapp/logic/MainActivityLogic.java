@@ -24,6 +24,10 @@ import com.zj.hiapp.fragment.RecommendFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
 public class MainActivityLogic {
 
     private static final String SAVED_CURRENT_ID = "SAVED_CURRENT_ID";

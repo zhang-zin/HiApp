@@ -5,9 +5,15 @@ import android.view.KeyEvent
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import com.zj.common.ui.component.HiBaseActivity
+import com.zj.hiapp.http.api.AccountApi
 import com.zj.hiapp.logic.MainActivityLogic
+import com.zj.hiapp.test.HiltSimple
+import com.zj.hiapp.test.module.AnalyticsService
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class MainActivity : HiBaseActivity<ViewDataBinding>(), MainActivityLogic.ActivityProvider {
+@AndroidEntryPoint
+class MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
 
     lateinit var mainActivityLogic: MainActivityLogic
 
