@@ -2,8 +2,17 @@ package com.zj.hiapp;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.zj.common.ui.component.HiBaseApplication;
+import com.zj.hiapp.test.HiltSimple;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.HiltAndroidApp;
+
+@HiltAndroidApp
 public class HiApplication extends HiBaseApplication {
+
+    @Inject
+    HiltSimple hiltSimple;
 
     @Override
     public void onCreate() {
@@ -15,5 +24,7 @@ public class HiApplication extends HiBaseApplication {
         }
 
         ARouter.init(this);
+
+        hiltSimple.doSomething();
     }
 }

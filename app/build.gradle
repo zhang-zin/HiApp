@@ -1,8 +1,8 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
 }
 apply from: '../dependencies.gradle'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     defaultConfig {

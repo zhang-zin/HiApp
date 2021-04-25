@@ -15,6 +15,7 @@ import com.zj.hiapp.http.ApiFactory
 import com.zj.hiapp.http.api.AccountApi
 import com.zj.hiapp.http.model.CoinInfoModel
 import com.zj.hiapp.http.model.UserModel
+import javax.inject.Inject
 
 object AccountManager {
 
