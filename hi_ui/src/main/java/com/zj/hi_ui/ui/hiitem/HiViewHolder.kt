@@ -7,7 +7,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.zj.hi_ui.ui.banner.HiBanner
 
-class HiViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+open class HiViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
 //    var binding: T? = DataBindingUtil.bind<T>(view)
 

@@ -1,7 +1,17 @@
 package com.zj.hiapp.http.model
 
-data class  GoodDetailModel(
+data class GoodDetailModel(
     val goods_detail_response: GoodsDetailResponse
+)
+
+data class GoodsList(
+    val goods_basic_detail_response: GoodsListResponse
+)
+
+data class GoodsListResponse(
+    val list: List<GoodsDetail>,
+    val request_id: String,
+    val search_id: String
 )
 
 data class GoodsDetailResponse(

@@ -15,11 +15,10 @@ import java.lang.reflect.ParameterizedType
 /**
  * 通用数据适配器
  *
- *
  * bugfix:HiDataItem<*, out RecyclerView.ViewHolder>  都被改成了这样。否则会有类型转换问题
  */
 class HiAdapter(context: Context) : Adapter<ViewHolder>() {
-    private val recyclerViewRef: WeakReference<RecyclerView>? = null
+    private var recyclerViewRef: WeakReference<RecyclerView>? = null
     private var mContext: Context = context
     private var mInflater = LayoutInflater.from(context)
     private var dataSets = java.util.ArrayList<HiDataItem<*, out ViewHolder>>()
@@ -194,7 +193,6 @@ class HiAdapter(context: Context) : Adapter<ViewHolder>() {
             return object : RecyclerView.ViewHolder(view) {}
         }
 
-
         val dataItem = typeArrays.get(viewType)
         var view: View? = dataItem.getItemView(parent)
         if (view == null) {
@@ -241,16 +239,16 @@ class HiAdapter(context: Context) : Adapter<ViewHolder>() {
                 }
             }
         }
-        return object : ViewHolder(view) {}
+        return object : HiViewHolder(view) {}
     }
 
     override fun getItemCount(): Int {
         return dataSets.size + getHeaderSize() + getFooterSize()
     }
 
-
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
+        recyclerViewRef = WeakReference(recyclerView)
 
         /**
          * 为列表上的item 适配网格布局

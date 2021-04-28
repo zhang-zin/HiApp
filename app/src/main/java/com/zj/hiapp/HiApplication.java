@@ -11,9 +11,6 @@ import dagger.hilt.android.HiltAndroidApp;
 @HiltAndroidApp
 public class HiApplication extends HiBaseApplication {
 
-    @Inject
-    HiltSimple hiltSimple;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -23,8 +20,7 @@ public class HiApplication extends HiBaseApplication {
             ARouter.openDebug();
         }
 
-        ARouter.init(this);
 
-        hiltSimple.doSomething();
+        ARouter.init(this);
     }
 }

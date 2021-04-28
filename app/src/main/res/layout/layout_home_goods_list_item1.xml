@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:background="@color/color_white">
+
+
+    <ImageView
+        android:id="@+id/item_image"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="10dp"
+        android:background="@color/color_eee"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/item_title"
+        android:layout_width="282dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:paddingStart="0dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/color_000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/item_label_container"
+        app:layout_constraintStart_toEndOf="@+id/item_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="商品的标题商品的标题商品的标题商品的标题商品的标题商品的标题商品的标题商品的标题" />
+
+    <LinearLayout
+        android:id="@+id/item_label_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/item_price"
+        app:layout_constraintStart_toStartOf="@+id/item_title"
+        app:layout_constraintTop_toBottomOf="@+id/item_title"
+        tools:background="@color/colorAccent"
+        tools:layout_height="10dp"
+        tools:layout_width="100dp"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/item_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/color_d43"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/view3"
+        app:layout_constraintStart_toStartOf="@+id/item_label_container"
+        app:layout_constraintTop_toBottomOf="@+id/item_label_container"
+        tools:text="$1美元" />
+
+    <TextView
+        android:id="@+id/item_sale_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/color_9b9"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/item_price"
+        app:layout_constraintLeft_toRightOf="@+id/item_price"
+        app:layout_constraintTop_toTopOf="@+id/item_price"
+        tools:text="已售1000件" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="0dp"
+        android:layout_height="2px"
+        android:background="@color/color_eee"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@id/item_image"
+        app:layout_constraintRight_toRightOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

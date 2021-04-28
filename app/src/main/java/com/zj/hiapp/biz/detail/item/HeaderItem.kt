@@ -1,12 +1,10 @@
-package com.zj.hiapp.biz.detail
+package com.zj.hiapp.biz.detail.item
 
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.AbsoluteSizeSpan
 import android.widget.ImageView
-import android.widget.TextView
 import com.zj.common.ui.view.loadUrl
-import com.zj.hi_ui.ui.banner.HiBanner
 import com.zj.hi_ui.ui.banner.core.HiBannerMo
 import com.zj.hi_ui.ui.banner.indicator.HiNumIndicator
 import com.zj.hi_ui.ui.hiitem.HiDataItem
@@ -23,7 +21,7 @@ class HeaderItem(
 ) : HiDataItem<GoodDetailModel, HiViewHolder>() {
 
     override fun onBindData(holder: HiViewHolder, position: Int) {
-//        val bindingView = holder.bindingView<LayoutDetailItemHeaderBinding>()
+        val bindingView = holder.bindingView<LayoutDetailItemHeaderBinding>()
         val bannerItems = arrayListOf<HiBannerMo>()
         goodsGalleryUrls.forEach {
             val bannerMo = object : HiBannerMo() {}
@@ -31,11 +29,7 @@ class HeaderItem(
             bannerItems.add(bannerMo)
         }
         val context = holder.itemView.context
-//        bindingView?.run {
-        val hiBanner: HiBanner = holder.findViewById(R.id.hi_banner)!!
-        val price: TextView = holder.findViewById(R.id.price)!!
-        val saleDesc: TextView = holder.findViewById(R.id.sale_desc)!!
-        val goodsTitle: TextView = holder.findViewById(R.id.goods_title)!!
+        bindingView?.run {
         hiBanner.setHiIndicator(HiNumIndicator(context))
         hiBanner.setBannerData(bannerItems)
         hiBanner.setBindAdapter { viewHolder, mo, _ ->
@@ -44,9 +38,8 @@ class HeaderItem(
         }
         price.text = spanPrice("¥$goodsPrice")
         goodsTitle.text = goodsName
-        saleDesc.text = String().format("已拼%s件", salesTip)
-
-//        }
+        saleDesc.text = String.format("已拼%s件", salesTip)
+        }
     }
 
     private fun spanPrice(price: String?): CharSequence {

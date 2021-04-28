@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:paddingBottom="10dp"
+        android:background="@color/color_white">
+
+        <ImageView
+            android:id="@+id/ivShopIcon"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/tvShopName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="2dp"
+            android:textColor="@color/color_000"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvShopDesc"
+            app:layout_constraintStart_toEndOf="@id/ivShopIcon"
+            app:layout_constraintTop_toTopOf="@+id/ivShopIcon"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="天天工厂店" />
+
+        <TextView
+            android:id="@+id/tvShopDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/color_565"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivShopIcon"
+            app:layout_constraintStart_toStartOf="@+id/tvShopName"
+            app:layout_constraintTop_toBottomOf="@+id/tvShopName"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="商品数量:50   总售:50万" />
+
+        <LinearLayout
+            android:id="@+id/llShopTag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ivShopIcon"
+            tools:layout_height="15dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvShopGoods"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/llShopTag" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
