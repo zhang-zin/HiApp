@@ -23,6 +23,7 @@ open class InputItemLayout : LinearLayout {
     private val topPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val bottomPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private lateinit var editText: EditText
+    private lateinit var titleView: TextView
 
     constructor(context: Context) : this(context, null)
 
@@ -90,7 +91,7 @@ open class InputItemLayout : LinearLayout {
             lineAttributes.getDimensionPixelSize(R.styleable.lineAppearance_leftMargin, 0)
         line.rightMargin =
             lineAttributes.getDimensionPixelSize(R.styleable.lineAppearance_rightMargin, 0)
-        line.enable = lineAttributes.getBoolean(R.styleable.lineAppearance_enabled, true)
+        line.enable = lineAttributes.getBoolean(R.styleable.lineAppearance_enabled, false)
 
         lineAttributes.recycle()
 
@@ -160,7 +161,7 @@ open class InputItemLayout : LinearLayout {
             R.styleable.titleTextAppearance_minWidth, 0
         )
 
-        val titleView = TextView(context)
+        titleView = TextView(context)
         titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize.toFloat())  //sp---当做sp在转换一次
         titleView.setTextColor(titleColor)
 
@@ -210,6 +211,8 @@ open class InputItemLayout : LinearLayout {
     }
 
     fun getEditText() = editText
+
+    fun getTitleText() = titleView
 
     internal class Line {
 

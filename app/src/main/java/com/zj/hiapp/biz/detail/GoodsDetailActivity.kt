@@ -9,10 +9,9 @@ import com.zj.hi_library.util.HiStatusBar
 import com.zj.hi_ui.ui.hiitem.HiAdapter
 import com.zj.hi_ui.ui.hiitem.HiDataItem
 import com.zj.hiapp.R
-import com.zj.hiapp.biz.detail.item.AppriseItem
-import com.zj.hiapp.biz.detail.item.HeaderItem
-import com.zj.hiapp.biz.detail.item.ShopItem
+import com.zj.hiapp.biz.detail.item.*
 import com.zj.hiapp.databinding.ActivityGoodsDetailBinding
+import com.zj.hiapp.fragment.GoodsItem
 import com.zj.hiapp.http.model.GoodDetailModel
 import com.zj.hiapp.http.model.GoodsDetail
 import com.zj.hiapp.router.HiRoute
@@ -49,6 +48,10 @@ class GoodsDetailActivity : HiBaseActivity<ActivityGoodsDetailBinding>() {
             if (goodsDetail?.goods_detail_response != null) {
                 bindData(goodsDetail)
             }
+        }
+
+        binding.actionBack.setOnClickListener {
+            onBackPressed()
         }
 
     }
@@ -100,6 +103,26 @@ class GoodsDetailActivity : HiBaseActivity<ActivityGoodsDetailBinding>() {
                 list
             )
         )
+
+        // 商品详情
+        dataItems.add(GoodsDetailItem(goodsDetail))
+
+        // 商品相册
+        if (goodsDetail.goods_gallery_urls.isNotEmpty()) {
+            goodsDetail.goods_gallery_urls.forEach {
+                dataItems.add(GalleryItem(it))
+            }
+        }
+
+        // 相似商品
+        dataItems.add(SimilarItem())
+
+        for (index in 0..7) {
+            val goods =
+                goodDetailViewModel.goodsListModel.value?.goods_basic_detail_response?.list!![index]
+            dataItems.add(GoodsItem(goods,false))
+        }
+
         hiAdapter.addItems(dataItems, true)
     }
 

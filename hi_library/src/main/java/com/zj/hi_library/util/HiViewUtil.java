@@ -1,5 +1,9 @@
 package com.zj.hi_library.util;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -34,6 +38,23 @@ public class HiViewUtil {
                     deque.add(container.getChildAt(i));
                 }
             }
+        }
+        return null;
+    }
+
+    public static boolean isActivityDestroyed(Context context) {
+        Activity activity = findActivity(context);
+        if (activity != null) {
+            return activity.isDestroyed() || activity.isFinishing();
+        }
+        return false;
+    }
+
+    private static Activity findActivity(Context context) {
+        if (context instanceof Activity) {
+            return (Activity) context;
+        } else if (context instanceof ContextWrapper) {
+            return findActivity(((ContextWrapper) context).getBaseContext());
         }
         return null;
     }

@@ -94,7 +94,7 @@ class ShopItem(
         }
 
         val dataItems = mutableListOf<GoodsItem>()
-        shopGoodsList.forEach {
+        shopGoodsList.forEach { _ ->
             dataItems.add(ShopGoodsItem(rvShopGoods))
         }
         val adapter = rvShopGoods.adapter as HiAdapter
@@ -102,14 +102,14 @@ class ShopItem(
         adapter.addItems(dataItems, true)
     }
 
-    inner class ShopGoodsItem(val rvShopGoods: RecyclerView) : GoodsItem("", false) {
+    inner class ShopGoodsItem(val rvShopGoods: RecyclerView) : GoodsItem(null, false) {
 
         private var goodsItemBinding: LayoutShopGoodsItemBinding? = null
 
         override fun getItemLayoutRes() = R.layout.layout_shop_goods_item
 
         override fun onViewAttachedToWindow(holder: HiViewHolder) {
-            super.onViewAttachedToWindow(holder)
+            val viewGroup = holder.itemView.parent as ViewGroup
             val availableWidth =
                 rvShopGoods.measuredWidth - rvShopGoods.paddingStart - rvShopGoods.paddingEnd
 

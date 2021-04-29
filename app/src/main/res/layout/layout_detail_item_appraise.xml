@@ -6,7 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:background="@color/color_white">
+        android:background="@color/color_white"
+        android:paddingBottom="10dp">
 
         <TextView
             android:id="@+id/tv_goods_appraise"
@@ -42,7 +43,9 @@
             android:id="@+id/ll_appraise_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16sp"
             android:layout_marginTop="5dp"
+            android:layout_marginEnd="16sp"
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@+id/appraise_tag" />
 

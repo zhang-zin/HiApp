@@ -84,6 +84,8 @@ public class HiViewPager extends ViewPager {
         if (getContext() instanceof Activity && ((Activity) getContext()).isFinishing()) {
             super.onDetachedFromWindow();
         }
+        // 防止内存泄漏
+        stop();
     }
 
     public void setIntervalTime(int intervalTime) {

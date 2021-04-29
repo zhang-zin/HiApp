@@ -1,53 +1,72 @@
 package com.zj.hiapp.fragment
 
 import android.content.Context
+import android.text.TextUtils
 import android.view.Gravity
+import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.zj.common.ui.view.loadUrl
 import com.zj.hi_library.util.HiDisplayUtil
 import com.zj.hi_ui.ui.hiitem.HiDataItem
 import com.zj.hi_ui.ui.hiitem.HiViewHolder
 import com.zj.hiapp.R
+import com.zj.hiapp.http.model.GoodsDetail
 
-open class GoodsItem(data: String, val hotTab: Boolean) :
-    HiDataItem<String, HiViewHolder>(data) {
+open class GoodsItem(private val data: GoodsDetail?, val hotTab: Boolean) :
+    HiDataItem<GoodsDetail, HiViewHolder>(data) {
     val MAX_TAG_SIZE = 3
     override fun onBindData(holder: HiViewHolder, position: Int) {
 
         val context = holder.itemView.context
 
-       /* val itemLabelContainer = holder.item_label_container
-        if (!TextUtils.isEmpty(goodsModel.tags)) {
-            itemLabelContainer.visibility = View.VISIBLE
-            val split = goodsModel.tags.split(" ")
-            for (index in split.indices) { //0...split.size-1
-                //0  ---3
-                val childCount = itemLabelContainer.childCount
-                if (index > MAX_TAG_SIZE - 1) {
-                    //倒叙
-                    for (index in childCount - 1 downTo MAX_TAG_SIZE - 1) {
-                        // itemLabelContainer childcount =5
-                        // 3，后面的两个都需要被删除
-                        itemLabelContainer.removeViewAt(index)
+        val itemLabelContainer = holder.findViewById<LinearLayout>(R.id.item_label_container)
+        if (itemLabelContainer != null) {
+            if (data == null) return
+            if (data.unified_tags.isNotEmpty()) {
+                itemLabelContainer.visibility = View.VISIBLE
+                for (index in data.unified_tags.indices) {
+                    if (index > 2)
+                        return
+                    //0  ---3
+                    val childCount = itemLabelContainer.childCount
+                    if (index > MAX_TAG_SIZE - 1) {
+                        //倒叙
+                        for (index in childCount - 1 downTo MAX_TAG_SIZE - 1) {
+                            // itemLabelContainer childcount =5
+                            // 3，后面的两个都需要被删除
+                            itemLabelContainer.removeViewAt(index)
+                        }
+                        break
                     }
-                    break
+                    //这里有个问题，有着一个服用的问题   5 ,4
+                    //解决上下滑动复用的问题--重复创建的问题
+                    val labelView: TextView = if (index > childCount - 1) {
+                        val view = createLabelView(context, index != 0)
+                        itemLabelContainer.addView(view)
+                        view
+                    } else {
+                        itemLabelContainer.getChildAt(index) as TextView
+                    }
+                    labelView.text = data.unified_tags[index]
                 }
-                //这里有个问题，有着一个服用的问题   5 ,4
-                //解决上下滑动复用的问题--重复创建的问题
-                val labelView: TextView = if (index > childCount - 1) {
-                    val view = createLabelView(context, index != 0)
-                    itemLabelContainer.addView(view)
-                    view
-                } else {
-                    itemLabelContainer.getChildAt(index) as TextView
-                }
-                labelView.text = split[index]
+            } else {
+                itemLabelContainer.visibility = View.GONE
             }
-        } else {
-            itemLabelContainer.visibility = View.GONE
-        }*/
+
+            val itemImage = holder.findViewById<ImageView>(R.id.item_image)
+            val itemTitle = holder.findViewById<TextView>(R.id.item_title)
+            val itemPrice = holder.findViewById<TextView>(R.id.item_price)
+            val itemSaleDesc = holder.findViewById<TextView>(R.id.item_sale_desc)
+
+            itemImage?.loadUrl(data.goods_image_url)
+            itemTitle?.text = data.goods_name
+            itemPrice?.text = String.format("￥%s", data.min_group_price)
+            itemSaleDesc?.text = String.format("销售量：%s件", data.sales_tip)
+        }
 
         if (!hotTab) {
             val margin = HiDisplayUtil.dp2px(2f)

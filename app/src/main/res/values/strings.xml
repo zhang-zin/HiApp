@@ -76,5 +76,6 @@
     <string name="integral">积分</string>
     <string name="home_search_hint">&#xe987;  搜索你想要的文章</string>
     <string name="login_fail">登录失败</string>
+    <string name="goods_detail">商品详情</string>
 
 </resources>

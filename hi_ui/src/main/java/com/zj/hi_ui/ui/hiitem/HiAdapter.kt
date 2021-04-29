@@ -280,7 +280,7 @@ class HiAdapter(context: Context) : Adapter<ViewHolder>() {
         recyclerViewRef?.clear()
     }
 
-    open fun getAttachRecyclerView(): RecyclerView? {
+    fun getAttachRecyclerView(): RecyclerView? {
         return recyclerViewRef?.get()
     }
 
