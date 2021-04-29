@@ -29,6 +29,10 @@ class GoodsDetailActivity : HiBaseActivity<ActivityGoodsDetailBinding>() {
     val appriseCount = Random(10).nextInt(1000)
     val appriseDesc = arrayOf("收到货，物流很快！包装完好无损，让我很满意。五星好评", "很好看", "质量很好，穿着很舒服")
 
+    val titleScrollListener = TitleScrollListener(callback = {
+        binding?.titleBar?.setBackgroundColor(it)
+    })
+
     override fun getLayoutId() = R.layout.activity_goods_detail
 
     override fun setStatusBar() {
@@ -41,6 +45,13 @@ class GoodsDetailActivity : HiBaseActivity<ActivityGoodsDetailBinding>() {
         binding.goodDetailList.layoutManager = GridLayoutManager(this, 2)
         binding.goodDetailList.adapter = HiAdapter(this)
         // preBindData() 轮播图可以预渲染
+        binding.goodDetailList.addOnScrollListener(titleScrollListener)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.goodDetailList.removeOnScrollListener(titleScrollListener
+        )
     }
 
     override fun initEvent() {
@@ -120,7 +131,7 @@ class GoodsDetailActivity : HiBaseActivity<ActivityGoodsDetailBinding>() {
         for (index in 0..7) {
             val goods =
                 goodDetailViewModel.goodsListModel.value?.goods_basic_detail_response?.list!![index]
-            dataItems.add(GoodsItem(goods,false))
+            dataItems.add(GoodsItem(goods, false))
         }
 
         hiAdapter.addItems(dataItems, true)
