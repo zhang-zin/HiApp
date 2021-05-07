@@ -41,7 +41,9 @@ class GoodDetailViewModel() : ViewModel() {
             val goodsList = apiFactory.getGoodsRecommend().serverData()
             goodsListModel.value = goodsList.data
             val goodDetailModel = serverData.data
-            liveData.postValue(goodDetailModel)
+            goodDetailModel?.run {
+                liveData.postValue(this)
+            }
         }
         return liveData
     }

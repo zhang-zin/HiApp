@@ -15,14 +15,13 @@ import com.zj.hiapp.http.ApiFactory
 import com.zj.hiapp.http.api.AccountApi
 import com.zj.hiapp.http.model.CoinInfoModel
 import com.zj.hiapp.http.model.UserModel
-import javax.inject.Inject
 
 object AccountManager {
 
     private var accountApi: AccountApi = ApiFactory.create(AccountApi::class.java)
-    private val userModel = MutableLiveData<UserModel>()
+    private val userModel = MutableLiveData<UserModel?>()
     private val registerLiveData = MutableLiveData<String>()
-    private val coinInfoModel = MutableLiveData<CoinInfoModel>()
+    private val coinInfoModel = MutableLiveData<CoinInfoModel?>()
     private val SAVE_USER_INFO_KEY = "save_user_info_key"
 
     init {
@@ -83,7 +82,7 @@ object AccountManager {
             })
     }
 
-    fun getCoinInfo(lifecycleOwner: LifecycleOwner, observer: Observer<CoinInfoModel>) {
+    fun getCoinInfo(lifecycleOwner: LifecycleOwner, observer: Observer<CoinInfoModel?>) {
         HiLog.e("start getCoinInfo")
         coinInfoModel.observe(lifecycleOwner, observer)
         accountApi.getCoinInfo()
@@ -100,7 +99,7 @@ object AccountManager {
             })
     }
 
-    fun observeLogin(owner: LifecycleOwner, observer: Observer<UserModel>) {
+    fun observeLogin(owner: LifecycleOwner, observer: Observer<UserModel?>) {
         userModel.observe(owner, observer)
     }
 

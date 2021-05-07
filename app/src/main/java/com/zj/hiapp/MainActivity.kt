@@ -5,6 +5,7 @@ import android.view.KeyEvent
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import com.zj.common.ui.component.HiBaseActivity
+import com.zj.common.util.Toast
 import com.zj.hiapp.logic.MainActivityLogic
 
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,6 +20,8 @@ class MainActivity  : HiBaseActivity<ViewDataBinding>(), MainActivityLogic.Activ
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainActivityLogic = MainActivityLogic(this, savedInstanceState)
+
+        "hi-tinker".Toast()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
