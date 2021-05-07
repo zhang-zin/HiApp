@@ -24,7 +24,9 @@ android {
 
     buildTypes {
         debug {
-            signingConfig signingConfigs.config
+            debuggable true
+            minifyEnabled false
+            signingConfig signingConfigs.debug
         }
         release {
             minifyEnabled true
@@ -36,6 +38,11 @@ android {
     //开启jumboMode开关，tinker在diff时，可以使得dex文件更小
     dexOptions {
         jumboMode = true
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
 }
 
@@ -69,6 +76,5 @@ dependencies {
     //1. 指定tinker依赖版本（注：应用升级1.3.5版本起，不再内置tinker）
     //2.为了便于解答问题，这里的tinker版本建议跟随此处demo设置，如果微信更新了tinker版本，bugly会定期同步更新
     implementation 'com.tencent.tinker:tinker-android-lib:1.9.14.10'
-    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
 
 }
