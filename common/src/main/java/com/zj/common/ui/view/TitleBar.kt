@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.zj.common.R
+import com.zj.hi_ui.ui.icfont.IconFontTextView
 
 class TitleBar @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

@@ -2,6 +2,7 @@ package com.zj.hi_ui.ui.hiitem
 
 import android.content.Context
 import android.util.SparseArray
+import android.util.SparseIntArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +23,9 @@ class HiAdapter(context: Context) : Adapter<ViewHolder>() {
     private var mContext: Context = context
     private var mInflater = LayoutInflater.from(context)
     private var dataSets = java.util.ArrayList<HiDataItem<*, out ViewHolder>>()
-    private var typeArrays = SparseArray<HiDataItem<*, out ViewHolder>>()
+
+    //private var typeArrays = SparseArray<HiDataItem<*, out ViewHolder>>()
+    private var typePosition = SparseIntArray();
 
     private var headers = SparseArray<View>()
     private var footers = SparseArray<View>()
@@ -166,9 +169,10 @@ class HiAdapter(context: Context) : Adapter<ViewHolder>() {
         val dataItem = dataSets[itemPosition]
         val type = dataItem.javaClass.hashCode()
         //如果还没有包含这种类型的item，则添加进来
-        if (typeArrays.indexOfKey(type) < 0) {
+        /*if (typeArrays.indexOfKey(type) < 0) {
             typeArrays.put(type, dataItem)
-        }
+        }*/
+        typePosition.put(type, position)
         return type
     }
 
@@ -193,7 +197,10 @@ class HiAdapter(context: Context) : Adapter<ViewHolder>() {
             return object : RecyclerView.ViewHolder(view) {}
         }
 
-        val dataItem = typeArrays.get(viewType)
+        val position = typePosition.get(viewType)
+        val dataItem = dataSets[position]
+        val vh = dataItem.onCreateViewHolder()
+        if (vh != null) return vh
         var view: View? = dataItem.getItemView(parent)
         if (view == null) {
             val layoutRes = dataItem.getItemLayoutRes()

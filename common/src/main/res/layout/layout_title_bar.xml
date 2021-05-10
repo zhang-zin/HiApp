@@ -2,7 +2,7 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <com.zj.common.ui.view.IconFontTextView
+    <com.zj.hi_ui.ui.icfont.IconFontTextView
         android:id="@+id/toolbar_action_back"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

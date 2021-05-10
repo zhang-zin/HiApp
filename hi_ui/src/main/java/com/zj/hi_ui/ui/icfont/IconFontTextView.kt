@@ -1,4 +1,4 @@
-package com.zj.common.ui.view
+package com.zj.hi_ui.ui.icfont
 
 import android.content.Context
 import android.graphics.Typeface
@@ -10,7 +10,7 @@ import androidx.appcompat.widget.AppCompatTextView
  */
 class IconFontTextView @JvmOverloads constructor(
     context: Context,
-    attributeSet: AttributeSet?,
+    attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : AppCompatTextView(context, attributeSet, defStyleAttr) {
 

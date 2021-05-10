@@ -1,5 +1,6 @@
 package com.zj.hiapp.biz.account
 
+import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.zj.common.ui.component.HiBaseActivity
@@ -31,6 +32,10 @@ class LoginActivity : HiBaseActivity<ActivityLoginBinding>() {
         AccountManager.observeRegister(this, { userName ->
             binding.inputUserName.getEditText().setText(userName)
         })
+        binding.hiNavigationBar.setNavListener {
+            onBackPressed()
+        }
+        binding.hiNavigationBar.addRightTextButton("注册", View.generateViewId())
     }
 
     private fun login() {

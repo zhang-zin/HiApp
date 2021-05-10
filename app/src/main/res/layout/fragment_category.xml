@@ -24,7 +24,7 @@
             app:rightVisibility="false"
             app:toolbarTitle="@string/title_category" />
 
-        <com.zj.common.ui.view.IconFontTextView
+        <com.zj.hi_ui.ui.icfont.IconFontTextView
             android:id="@+id/search_container"
             android:layout_width="match_parent"
             android:layout_height="35dp"

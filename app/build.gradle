@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
 }
 apply from: '../dependencies.gradle'
-apply from: 'tinker-support.gradle'
+//apply from: 'tinker-support.gradle'
 apply plugin: 'dagger.hilt.android.plugin'
 
 android {

@@ -13,12 +13,20 @@
         android:orientation="vertical"
         tools:context=".biz.account.LoginActivity">
 
+
+        <com.zj.hi_ui.ui.title.HiNavigationBar
+            android:id="@+id/hiNavigationBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height"
+            app:nav_title="@string/action_login" />
+
+
         <com.zj.common.ui.view.TitleBar
             android:id="@+id/titleBar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/item_height"
-            app:textColor="@color/color_white"
             android:background="@color/colorPrimary"
+            app:textColor="@color/color_white"
             app:titleActionRight="@string/action_registered"
             app:titleBackIcon="@string/if_back"
             app:toolbarTitle="@string/action_login" />

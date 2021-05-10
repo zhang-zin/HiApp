@@ -26,7 +26,7 @@ public class HiApplication extends HiBaseApplication {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(base);
-        Beta.installTinker();
+//        Beta.installTinker();
     }
 
     private void initBugly() {

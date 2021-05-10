@@ -9,6 +9,8 @@ import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 
+import java.lang.reflect.TypeVariable;
+
 public class HiDisplayUtil {
     public static int dp2px(float dp, Resources resources) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
@@ -17,6 +19,11 @@ public class HiDisplayUtil {
     public static int dp2px(float dp) {
         Resources resources = AppGlobals.INSTANCE.get().getResources();
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
+    }
+
+    public static int sp2px(float sp) {
+        Resources resources = AppGlobals.INSTANCE.get().getResources();
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, resources.getDisplayMetrics());
     }
 
 

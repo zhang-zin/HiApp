@@ -111,7 +111,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_item_history" />
 
-        <com.zj.common.ui.view.IconFontTextView
+        <com.zj.hi_ui.ui.icfont.IconFontTextView
             android:id="@+id/item_notify"
             leftText="@{@string/if_notify}"
             rightText="@{@string/item_notify}"
@@ -124,7 +124,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view"
             tools:text="课程通知" />
 
-        <com.zj.common.ui.view.IconFontTextView
+        <com.zj.hi_ui.ui.icfont.IconFontTextView
             android:id="@+id/item_share"
             leftText="@{@string/if_share}"
             rightText="@{@string/item_share}"
@@ -139,7 +139,7 @@
             app:layout_constraintTop_toBottomOf="@+id/item_notify"
             tools:text="我的分享" />
 
-        <com.zj.common.ui.view.IconFontTextView
+        <com.zj.hi_ui.ui.icfont.IconFontTextView
             android:id="@+id/item_collection"
             leftText="@{@string/if_collection}"
             rightText="@{@string/item_collection}"
@@ -154,7 +154,7 @@
             app:layout_constraintTop_toBottomOf="@+id/item_share"
             tools:text="我的收藏" />
 
-        <com.zj.common.ui.view.IconFontTextView
+        <com.zj.hi_ui.ui.icfont.IconFontTextView
             android:id="@+id/item_history"
             leftText="@{@string/if_history}"
             rightText="@{@string/item_history}"
@@ -169,7 +169,7 @@
             app:layout_constraintTop_toBottomOf="@+id/item_collection"
             tools:text="阅读历史" />
 
-        <com.zj.common.ui.view.IconFontTextView
+        <com.zj.hi_ui.ui.icfont.IconFontTextView
             android:id="@+id/item_setting"
             leftText="@{@string/if_location}"
             rightText="@{@string/item_setting}"
