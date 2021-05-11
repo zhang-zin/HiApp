@@ -8,7 +8,6 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -47,7 +46,7 @@ class HiNavigationBar @JvmOverloads constructor(
         }
     }
 
-    fun setNavListener(listener: View.OnClickListener) {
+    fun setNavListener(listener: OnClickListener) {
         if (!TextUtils.isEmpty(navAttrs.navIconStr)) {
             val back =
                 addLeftTextButton(navAttrs.navIconStr!!, R.integer.id_left_back_view)
@@ -154,10 +153,24 @@ class HiNavigationBar @JvmOverloads constructor(
     }
     //endregion
 
+    private fun generateTextButton(): Button {
+        val button = IconFontButton(context)
+        button.setBackgroundResource(0)
+        button.minWidth = 0
+        button.minimumWidth = 0
+        button.minHeight = 0
+        button.minimumHeight = 0
+        button.setTextSize(TypedValue.COMPLEX_UNIT_PX, navAttrs.btnTextSize)
+        button.setTextColor(navAttrs.btnTextColor)
+        button.gravity = Gravity.CENTER
+        return button
+    }
+
     private fun generateTextButtonLayoutParams(): LayoutParams {
         return LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT)
     }
 
+    //region 设置标题
     fun setTitle(title: String) {
         ensureTitleView()
         titleView?.text = title
@@ -171,6 +184,9 @@ class HiNavigationBar @JvmOverloads constructor(
         subTittleView?.visibility = if (TextUtils.isEmpty(subTitle)) View.GONE else View.VISIBLE
     }
 
+    /**
+     * 生成主标题控件
+     */
     private fun ensureTitleView() {
         if (titleView == null) {
             titleView = IconFontTextView(context)
@@ -186,6 +202,9 @@ class HiNavigationBar @JvmOverloads constructor(
         }
     }
 
+    /**
+     * 生成副标题控件
+     */
     private fun ensureSubtitleView() {
         if (subTittleView == null) {
             subTittleView = IconFontTextView(context)
@@ -201,6 +220,9 @@ class HiNavigationBar @JvmOverloads constructor(
         }
     }
 
+    /**
+     * 生成标题容器
+     */
     private fun ensureTitleContainer() {
         if (titleContainer == null) {
             titleContainer = LinearLayout(context)
@@ -214,32 +236,25 @@ class HiNavigationBar @JvmOverloads constructor(
         }
     }
 
+    /**
+     * 更新标题字体大小
+     */
     private fun updateTitleViewStyle() {
         titleView?.run {
             if (subTittleView == null || TextUtils.isEmpty(subTittleView!!.text)) {
-                setTextSize(TypedValue.COMPLEX_UNIT_PX, navAttrs.titleTextSize)
                 typeface = Typeface.DEFAULT_BOLD
+                setTextSize(TypedValue.COMPLEX_UNIT_PX, navAttrs.titleTextSize)
             } else {
-                setTextSize(TypedValue.COMPLEX_UNIT_PX, navAttrs.titleTextSizeWithSubTitle)
                 typeface = Typeface.DEFAULT
+                setTextSize(TypedValue.COMPLEX_UNIT_PX, navAttrs.titleTextSizeWithSubTitle)
             }
         }
-
     }
+    //endregion
 
-    private fun generateTextButton(): Button {
-        val button = IconFontButton(context)
-        button.setBackgroundResource(0)
-        button.minWidth = 0
-        button.minimumWidth = 0
-        button.minHeight = 0
-        button.minimumHeight = 0
-        button.setTextSize(TypedValue.COMPLEX_UNIT_PX, navAttrs.btnTextSize)
-        button.setTextColor(navAttrs.btnTextColor)
-        button.gravity = Gravity.CENTER
-        return button
-    }
-
+    /**
+     * 解析属性
+     */
     private fun parseNavAttrs(context: Context, attrs: AttributeSet?, defStyleAttr: Int): Attrs {
         val value = TypedValue()
         context.theme.resolveAttribute(R.attr.navigationStyle, value, true)
