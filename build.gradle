@@ -38,3 +38,17 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+task taskA {
+    doFirst {
+        println 'TaskA'
+    }
+}
+
+task taskB {
+    doFirst {
+        println 'TaskB'
+    }
+}
+
+taskB.dependsOn taskA //B在执行时，会先执行A

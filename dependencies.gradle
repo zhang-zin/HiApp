@@ -79,3 +79,34 @@ dependencies {
     kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
     kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
 }
+
+//第一种配置方法，创建的时候就配置task的group的description
+task tinyPngTask(group: 'imooc', description: 'compress images') {
+    println 'this is TinyPngTask' //1.直接写在闭包里面的，是在配置阶段就执行的
+    doFirst {
+        println 'task in do first1' //3.运行任务是，后于first2执行
+    }
+    doFirst {
+        println 'task in do first2' //2.运行任务是，所有actions第一个执行
+    }
+    doLast {
+        println 'task in do last'   //4.运行任务时，会最后 一个执行
+    }
+}
+
+project.tasks.create(name: 'tinyPngTask2') {
+    //的第二种配置：直接在闭包中配置
+    setGroup('imooc')
+    setDescription('compress images')
+    println 'this is TinyPngTask'
+}
+
+//第三章是继承自DefaultTask，需要向project中注册
+//一般开发插件的时候会这么写
+class TinyPngTask extends DefaultTask {
+
+    @TaskAction
+    void run() {
+        //...
+    }
+}
